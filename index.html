@@ -45,7 +45,7 @@
 
       </div>
       <!-- modals start here -->
-
+      <!-- log in modal, that signs up and in, and changes on sign in to be able to sign out and change password -->
       <div id='sign-in-modal' class="modal fade" tabindex="-1" role="dialog" aria-labelledby="logInLabel">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -57,19 +57,19 @@
 
               <form class="after-out sign-up">
                 <fieldset>
-                  <legend>Sign up!</legend>
-                  <input type="text" class="to-clear" name="credentials[email]" placeholder="Email">
-                  <input type="password" class="to-clear" name="credentials[password]" placeholder="Password">
+                  <legend>Sign Up!</legend>
+                  <input type="text" class="to-clear" name="credentials[email]" placeholder="Enter Email">
+                  <input type="password" class="to-clear" name="credentials[password]" placeholder="Enter Password">
                   <input type="password" class="to-clear" name="credentials[password_confirmation]" placeholder="Confirm Password">
-                  <input type="submit" name="submit" value="Sign up!">
+                  <input type="submit" name="submit" value="Sign Up!">
                 </fieldset>
               </form>
 
               <form class="sign-in after-out">
                 <fieldset>
                   <legend>Sign In!</legend>
-                  <input type="text" class="to-clear" name="credentials[email]" placeholder="Email">
-                  <input type="password" class="to-clear" name="credentials[password]" placeholder="Password">
+                  <input type="text" class="to-clear" name="credentials[email]" placeholder="Enter Email">
+                  <input type="password" class="to-clear" name="credentials[password]" placeholder="Enter Password">
                   <input type="submit" name="submit" value="Sign In">
                 </fieldset>
               </form>
@@ -84,8 +84,8 @@
               <form class="change-password after-in" style="display: none">
                 <fieldset>
                   <legend>Change Password!</legend>
-                  <input type="password" class="to-clear" name="passwords[old]" placeholder="Current Password">
-                  <input type="password" class="to-clear" name="passwords[new]" placeholder="New Password">
+                  <input type="password" class="to-clear" name="passwords[old]" placeholder="Enter Current Password">
+                  <input type="password" class="to-clear" name="passwords[new]" placeholder="Enter New Password">
                   <input type="submit" name="submit" value="Change Password">
                   <p style="display: none" class="changed" id="password-changed">Password Changed!</p>
                 </fieldset>
@@ -94,6 +94,47 @@
           </div>
         </div>
       </div>
+      <!--  -->
+    <div class="modal fade" id="cart" tabindex="-1" role="dialog" aria-labelledby="cartLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="cartLabel">Shopping Cart</h4>
+        </div>
+        <div class="modal-body">
+          <div class="show-cart">
+            <div class="row cart-row">
+              <div class="col-md-3">
+                <h5>Item</h5>
+              </div>
+              <div class="col-md-3">
+                <h5>Price</h5>
+              </div>
+              <div class="col-md-3">
+              <h5>Quantity</h5>
+              </div>
+              <div class="col-md-3">
+                <h5>Remove</h5>
+              </div>
+              <br>
+            </div>
+            <div class="cart-items">
+	          </div>
+            <h3 class="no-items">Cart is Empty</h3>
+    	      <h5>Total: </h5>
+            <!-- need to put stripe checkout link here -->
+    	      <script src="#"></script>
+	          <button style="display: none" type="button" class="btn btn-default create-order" id="save-order-button">Save for later</button>
+	          <button style="display: none" type="button" class="btn btn-default checkout" id="checkout-button">Checkout</button>
+    	      <h3 class="sign-in-warn">Must be signed in to complete this order</h3>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+
+
 
 
     </body>
