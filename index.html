@@ -132,9 +132,21 @@
               <h3 class="no-items">Cart is Empty</h3>
       	      <h5>Total: </h5>
               <!-- need to put stripe checkout link here -->
+              <form action="your-server-side-code" method="POST">
+                <!-- data-amount will need to be dynamic with cart total -->
+                <script
+                  src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                  data-key="pk_test_UxDuOG7M2SZQLIDtrFMoZtRP"
+                  data-amount="100"
+                  data-name="Demo Site"
+                  data-description="Widget"
+                  data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                  data-locale="auto">
+                </script>
+              </form>
       	      <script src="#"></script>
   	          <button style="display: none" type="button" class="btn btn-default create-order" id="save-order-button">Save for later</button>
-  	          <button style="display: none" type="button" class="btn btn-default checkout" id="checkout-button">Checkout</button>
+  	          <!-- <button style="display: none" type="button" class="btn btn-default checkout" id="checkout-button">Checkout</button> -->
       	      <h3 class="sign-in-warn">Must be signed in to complete this order</h3>
             </div>
           </div>
@@ -298,7 +310,6 @@
 
       </div>
       <!--  /GRID  ======================================= -->
-
 
       <footer>
         <p> Brought to you by Team SuperMegaAwesome (& some dragons) </p>
