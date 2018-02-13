@@ -22,12 +22,13 @@
             <li id='cart-button' class="cart" data-toggle="modal" data-target="#cart">
               <a>Cart</a>
             </li>
-            <li class="profile" style="display: none" data-toggle="modal" data-target="#profile">
+            <!-- <li class="profile" style="display: none" data-toggle="modal" data-target="#profile">
               <a>Profile</a>
-            </li>
+            </li> -->
             <li id='all-button' class="search">
               <a>All Products</a>
             </li>
+            <!-- may need to change this data-target match modal -->
             <li class="sign signout default-show" data-target="#log-in">
               <a id='login-button'>Log In</a>
             </li>
@@ -35,22 +36,29 @@
         </nav>
       </header>
 
-      <div id='content' class="content">
-        <div id='products'>
-        </div>
+      <!-- replace with edited store banner, make responsive for different screen sizes -->
+      <img src="http://via.placeholder.com/1250x150" alt="store image" class="center">
 
+      <div id='content' class="content">
+        <!-- WILL LIKELY DELETE THIS DIV -->
+        <!-- <div id='products'>
+        </div> -->
+
+        <!-- may not need this, but we'll see -->
         <div id='checkout-page'>
-          <h1>THIS IS THE CHECKOUT PAGE</h1>
+          <h1>This is the checkout page</h1>
         </div>
 
       </div>
       <!-- modals start here -->
       <!-- log in modal, that signs up and in, and changes on sign in to be able to sign out and change password -->
+      <!-- change displayed name of modal (line 55) to `account` on sign in, and back to `log in` after sign out-->
       <div id='sign-in-modal' class="modal fade" tabindex="-1" role="dialog" aria-labelledby="logInLabel">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <!-- will want to change this text to say `account` on sign in, and back to `Log in` on sign out -->
               <h4 class="modal-title" id="logInLabel">Log In</h4>
             </div>
             <div class="modal-body">
@@ -94,48 +102,206 @@
           </div>
         </div>
       </div>
-      <!--  -->
-    <div class="modal fade" id="cart" tabindex="-1" role="dialog" aria-labelledby="cartLabel">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="cartLabel">Shopping Cart</h4>
-        </div>
-        <div class="modal-body">
-          <div class="show-cart">
-            <div class="row cart-row">
-              <div class="col-md-3">
-                <h5>Item</h5>
+      <!-- cart modal -->
+      <div class="modal fade" id="cart" tabindex="-1" role="dialog" aria-labelledby="cartLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="cartLabel">Shopping Cart</h4>
+          </div>
+          <div class="modal-body">
+            <div class="show-cart">
+              <div class="row cart-row">
+                <div class="col-md-3">
+                  <h5>Item</h5>
+                </div>
+                <div class="col-md-3">
+                  <h5>Price</h5>
+                </div>
+                <div class="col-md-3">
+                <h5>Quantity</h5>
+                </div>
+                <div class="col-md-3">
+                  <h5>Remove</h5>
+                </div>
+                <br>
               </div>
-              <div class="col-md-3">
-                <h5>Price</h5>
-              </div>
-              <div class="col-md-3">
-              <h5>Quantity</h5>
-              </div>
-              <div class="col-md-3">
-                <h5>Remove</h5>
-              </div>
-              <br>
+              <div class="cart-items">
+  	          </div>
+              <h3 class="no-items">Cart is Empty</h3>
+      	      <h5>Total: </h5>
+              <!-- need to put stripe checkout link here -->
+      	      <script src="#"></script>
+  	          <button style="display: none" type="button" class="btn btn-default create-order" id="save-order-button">Save for later</button>
+  	          <button style="display: none" type="button" class="btn btn-default checkout" id="checkout-button">Checkout</button>
+      	      <h3 class="sign-in-warn">Must be signed in to complete this order</h3>
             </div>
-            <div class="cart-items">
-	          </div>
-            <h3 class="no-items">Cart is Empty</h3>
-    	      <h5>Total: </h5>
-            <!-- need to put stripe checkout link here -->
-    	      <script src="#"></script>
-	          <button style="display: none" type="button" class="btn btn-default create-order" id="save-order-button">Save for later</button>
-	          <button style="display: none" type="button" class="btn btn-default checkout" id="checkout-button">Checkout</button>
-    	      <h3 class="sign-in-warn">Must be signed in to complete this order</h3>
+          </div>
           </div>
         </div>
-        </div>
       </div>
-    </div>
+      <!-- PROD GRID  ============================================================ -->
+      <!-- add image URLS to img tags -->
+      <div class="row-fluid container-folio">
+        <div class="span4">
+          <div class="thumbnail">
+            <img src="#" alt="post image">
+            <div class="caption">
+            <h3 class="">Product name</h3>
+              <p class="">Description of the item</p>
+
+              <div class="row-fluid">
+                <div class="span6">
+                  <p class="lead">$15.50</p>
+                </div>
+                <div class="span6">
+                  <a class="btn btn-success btn-block">Add to cart</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="span4">
+          <div class="thumbnail">
+            <img src="#" alt="post image">
+            <div class="caption">
+            <h3 class="">Product name</h3>
+              <p class="">Description of the item</p>
+
+              <div class="row-fluid">
+                <div class="span6">
+                  <p class="lead">$15.50</p>
+                </div>
+                <div class="span6">
+                  <a class="btn btn-success btn-block">Add to cart</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="span4">
+          <div class="thumbnail">
+            <img src="#" alt="post image">
+            <div class="caption">
+            <h3 class="">Product name</h3>
+              <p class="">Description of the item</p>
+
+              <div class="row-fluid">
+                <div class="span6">
+                  <p class="lead">$15.50</p>
+                </div>
+                <div class="span6">
+                  <a class="btn btn-success btn-block">Add to cart</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="span4">
+          <div class="thumbnail">
+            <img src="#" alt="post image">
+            <div class="caption">
+            <h3 class="">Product name</h3>
+              <p class="">Description of the item</p>
+
+              <div class="row-fluid">
+                <div class="span6">
+                  <p class="lead">$15.50</p>
+                </div>
+                <div class="span6">
+                  <a class="btn btn-success btn-block">Add to cart</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="span4">
+          <div class="thumbnail">
+            <img src="#" alt="post image">
+            <div class="caption">
+            <h3 class="">Product name</h3>
+              <p class="">Description of the item</p>
+
+              <div class="row-fluid">
+                <div class="span6">
+                  <p class="lead">$15.50</p>
+                </div>
+                <div class="span6">
+                  <a class="btn btn-success btn-block">Add to cart</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="span4">
+          <div class="thumbnail">
+            <img src="#" alt="post image">
+            <div class="caption">
+            <h3 class="">Product name</h3>
+              <p class="">Description of the item</p>
+
+              <div class="row-fluid">
+                <div class="span6">
+                  <p class="lead">$15.50</p>
+                </div>
+                <div class="span6">
+                  <a class="btn btn-success btn-block">Add to cart</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="span4">
+          <div class="thumbnail">
+            <img src="#" alt="post image">
+            <div class="caption">
+            <h3 class="">Product name</h3>
+              <p class="">Description of the item</p>
+
+              <div class="row-fluid">
+                <div class="span6">
+                  <p class="lead">$15.50</p>
+                </div>
+                <div class="span6">
+                  <a class="btn btn-success btn-block">Add to cart</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="span4">
+          <div class="thumbnail">
+            <img src="#" alt="post image">
+            <div class="caption">
+            <h3 class="">Product name</h3>
+              <p class="">Description of the item</p>
+
+              <div class="row-fluid">
+                <div class="span6">
+                  <p class="lead">$15.50</p>
+                </div>
+                <div class="span6">
+                  <a class="btn btn-success btn-block">Add to cart</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <!--  /GRID  ======================================= -->
 
 
-
-
+      <footer>
+        <p> Brought to you by Team SuperMegaAwesome (& some dragons) </p>
+      </footer>
     </body>
 </html>
