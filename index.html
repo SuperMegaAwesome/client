@@ -12,14 +12,89 @@
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
     <body class="container-fluid">
-      <h1>Example</h1>
+      <header>
+      <!-- <div class="jumbotron">
+      	<h1>Nozama</h1>
+      	<h2>Because where else would you get it?</h2>
+      </div> -->
+        <nav class="navbar navbar-inverse sign">
+          <ul class="nav navbar-nav">
+            <li id='cart-button' class="cart" data-toggle="modal" data-target="#cart">
+              <a>Cart</a>
+            </li>
+            <li class="profile" style="display: none" data-toggle="modal" data-target="#profile">
+              <a>Profile</a>
+            </li>
+            <li id='all-button' class="search">
+              <a>All Products</a>
+            </li>
+            <li class="sign signout default-show" data-target="#log-in">
+              <a id='login-button'>Log In</a>
+            </li>
+          </ul>
+        </nav>
+      </header>
 
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-      eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-      minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-      ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-      velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-      cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-      est laborum.</p>
+      <div id='content' class="content">
+        <div id='products'>
+        </div>
+
+        <div id='checkout-page'>
+          <h1>THIS IS THE CHECKOUT PAGE</h1>
+        </div>
+
+      </div>
+      <!-- modals start here -->
+
+      <div id='sign-in-modal' class="modal fade" tabindex="-1" role="dialog" aria-labelledby="logInLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="logInLabel">Log In</h4>
+            </div>
+            <div class="modal-body">
+
+              <form class="after-out sign-up">
+                <fieldset>
+                  <legend>Sign up!</legend>
+                  <input type="text" class="to-clear" name="credentials[email]" placeholder="Email">
+                  <input type="password" class="to-clear" name="credentials[password]" placeholder="Password">
+                  <input type="password" class="to-clear" name="credentials[password_confirmation]" placeholder="Confirm Password">
+                  <input type="submit" name="submit" value="Sign up!">
+                </fieldset>
+              </form>
+
+              <form class="sign-in after-out">
+                <fieldset>
+                  <legend>Sign In!</legend>
+                  <input type="text" class="to-clear" name="credentials[email]" placeholder="Email">
+                  <input type="password" class="to-clear" name="credentials[password]" placeholder="Password">
+                  <input type="submit" name="submit" value="Sign In">
+                </fieldset>
+              </form>
+
+              <form class="sign-out after-in" style="display: none">
+                <fieldset>
+                  <legend>Sign Out!</legend>
+                  <input class="sign-out" type="submit" value="Sign Out">
+                </fieldset>
+              </form>
+
+              <form class="change-password after-in" style="display: none">
+                <fieldset>
+                  <legend>Change Password!</legend>
+                  <input type="password" class="to-clear" name="passwords[old]" placeholder="Current Password">
+                  <input type="password" class="to-clear" name="passwords[new]" placeholder="New Password">
+                  <input type="submit" name="submit" value="Change Password">
+                  <p style="display: none" class="changed" id="password-changed">Password Changed!</p>
+                </fieldset>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
     </body>
 </html>
