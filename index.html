@@ -12,14 +12,299 @@
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
     <body class="container-fluid">
-      <h1>Example</h1>
+      <header>
+      <!-- <div class="jumbotron">
+      	<h1>Nozama</h1>
+      	<h2>Because where else would you get it?</h2>
+      </div> -->
+        <nav class="navbar navbar-inverse sign">
+          <ul class="nav navbar-nav">
+            <li id='cart-button' class="cart" data-toggle="modal" data-target="#cart">
+              <a>Cart</a>
+            </li>
+            <!-- <li class="profile" style="display: none" data-toggle="modal" data-target="#profile">
+              <a>Profile</a>
+            </li> -->
+            <li id='all-button' class="search">
+              <a>All Products</a>
+            </li>
+            <!-- may need to change this data-target match modal -->
+            <li class="sign signout default-show" data-target="#log-in">
+              <a id='login-button'>Log In</a>
+            </li>
+          </ul>
+        </nav>
+      </header>
 
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-      eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-      minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-      ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-      velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-      cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-      est laborum.</p>
+      <!-- replace with edited store banner, make responsive for different screen sizes -->
+      <img src="http://via.placeholder.com/1250x150" alt="store image" class="center">
+
+      <div id='content' class="content">
+        <!-- WILL LIKELY DELETE THIS DIV -->
+        <!-- <div id='products'>
+        </div> -->
+
+        <!-- may not need this, but we'll see -->
+        <div id='checkout-page'>
+          <h1>This is the checkout page</h1>
+        </div>
+
+      </div>
+      <!-- modals start here -->
+      <!-- log in modal, that signs up and in, and changes on sign in to be able to sign out and change password -->
+      <!-- change displayed name of modal (line 55) to `account` on sign in, and back to `log in` after sign out-->
+      <div id='sign-in-modal' class="modal fade" tabindex="-1" role="dialog" aria-labelledby="logInLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <!-- will want to change this text to say `account` on sign in, and back to `Log in` on sign out -->
+              <h4 class="modal-title" id="logInLabel">Log In</h4>
+            </div>
+            <div class="modal-body">
+
+              <form class="after-out sign-up">
+                <fieldset>
+                  <legend>Sign Up!</legend>
+                  <input type="text" class="to-clear" name="credentials[email]" placeholder="Enter Email">
+                  <input type="password" class="to-clear" name="credentials[password]" placeholder="Enter Password">
+                  <input type="password" class="to-clear" name="credentials[password_confirmation]" placeholder="Confirm Password">
+                  <input type="submit" name="submit" value="Sign Up!">
+                </fieldset>
+              </form>
+
+              <form class="sign-in after-out">
+                <fieldset>
+                  <legend>Sign In!</legend>
+                  <input type="text" class="to-clear" name="credentials[email]" placeholder="Enter Email">
+                  <input type="password" class="to-clear" name="credentials[password]" placeholder="Enter Password">
+                  <input type="submit" name="submit" value="Sign In">
+                </fieldset>
+              </form>
+
+              <form class="sign-out after-in" style="display: none">
+                <fieldset>
+                  <legend>Sign Out!</legend>
+                  <input class="sign-out" type="submit" value="Sign Out">
+                </fieldset>
+              </form>
+
+              <form class="change-password after-in" style="display: none">
+                <fieldset>
+                  <legend>Change Password!</legend>
+                  <input type="password" class="to-clear" name="passwords[old]" placeholder="Enter Current Password">
+                  <input type="password" class="to-clear" name="passwords[new]" placeholder="Enter New Password">
+                  <input type="submit" name="submit" value="Change Password">
+                  <p style="display: none" class="changed" id="password-changed">Password Changed!</p>
+                </fieldset>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- cart modal -->
+      <div class="modal fade" id="cart" tabindex="-1" role="dialog" aria-labelledby="cartLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="cartLabel">Shopping Cart</h4>
+          </div>
+          <div class="modal-body">
+            <div class="show-cart">
+              <div class="row cart-row">
+                <div class="col-md-3">
+                  <h5>Item</h5>
+                </div>
+                <div class="col-md-3">
+                  <h5>Price</h5>
+                </div>
+                <div class="col-md-3">
+                <h5>Quantity</h5>
+                </div>
+                <div class="col-md-3">
+                  <h5>Remove</h5>
+                </div>
+                <br>
+              </div>
+              <div class="cart-items">
+  	          </div>
+              <h3 class="no-items">Cart is Empty</h3>
+      	      <h5>Total: </h5>
+              <!-- need to put stripe checkout link here -->
+              <form action="your-server-side-code" method="POST">
+                <!-- data-amount will need to be dynamic with cart total -->
+                <script
+                  src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                  data-key="pk_test_UxDuOG7M2SZQLIDtrFMoZtRP"
+                  data-amount="100"
+                  data-name="Demo Site"
+                  data-description="Widget"
+                  data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                  data-locale="auto">
+                </script>
+              </form>
+      	      <script src="#"></script>
+  	          <button style="display: none" type="button" class="btn btn-default create-order" id="save-order-button">Save for later</button>
+  	          <!-- <button style="display: none" type="button" class="btn btn-default checkout" id="checkout-button">Checkout</button> -->
+      	      <h3 class="sign-in-warn">Must be signed in to complete this order</h3>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+      <!-- PROD GRID  ============================================================ -->
+      <!-- add image URLS to img tags -->
+      <div class="row-fluid container-folio">
+        <div class="span4 col-sm-3">
+          <div class="thumbnail">
+            <img src="https://i.imgur.com/vQY3Ae4.png" title="source: imgur.com" alt="post image">
+            <div class="caption">
+            <h3 class="">Orange Car</h3>
+
+              <div class="row-fluid">
+                <div class="span6">
+                  <p class="product-price">$5.00</p>
+                </div>
+                <div class="span6">
+                  <a class="btn btn-success btn-block">Add to cart</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="span4 col-sm-3">
+          <div class="thumbnail">
+            <img src="https://i.imgur.com/1zK3usw.png" title="source: imgur.com" alt="post image">
+            <div class="caption">
+            <h3 class="">Purple Car</h3>
+
+              <div class="row-fluid">
+                <div class="span6">
+                  <p class="product-price">$5.00</p>
+                </div>
+                <div class="span6">
+                  <a class="btn btn-success btn-block">Add to cart</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="span4 col-sm-3">
+          <div class="thumbnail">
+            <img src="https://i.imgur.com/VkeVAUy.png" title="source: imgur.com" alt="post image">
+            <div class="caption">
+            <h3 class="">Green Plane</h3>
+
+              <div class="row-fluid">
+                <div class="span6">
+                  <p class="product-price">$7.50</p>
+                </div>
+                <div class="span6">
+                  <a class="btn btn-success btn-block">Add to cart</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="span4 col-sm-3">
+          <div class="thumbnail">
+            <img src="https://i.imgur.com/uW9rAvG.png" title="source: imgur.com" alt="post image">
+            <div class="caption">
+            <h3 class="">Red Truck</h3>
+
+              <div class="row-fluid">
+                <div class="span6">
+                  <p class="product-price">$6.00</p>
+                </div>
+                <div class="span6">
+                  <a class="btn btn-success btn-block">Add to cart</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="span4 col-sm-3">
+          <div class="thumbnail">
+            <img src="https://i.imgur.com/7DEaSAT.png" title="source: imgur.com" alt="post image">
+            <div class="caption">
+            <h3 class="">Blue Truck</h3>
+
+              <div class="row-fluid">
+                <div class="span6">
+                  <p class="product-price">$6.00</p>
+                </div>
+                <div class="span6">
+                  <a class="btn btn-success btn-block">Add to cart</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="span4 col-sm-3">
+          <div class="thumbnail">
+            <img src="https://i.imgur.com/f3CaIqS.png" title="source: imgur.com" alt="post image">
+            <div class="caption">
+            <h3 class="">Red Plane</h3>
+
+              <div class="row-fluid">
+                <div class="span6">
+                  <p class="product-price">$7.50</p>
+                </div>
+                <div class="span6">
+                  <a class="btn btn-success btn-block">Add to cart</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="span4 col-sm-3">
+          <div class="thumbnail">
+            <img src="https://i.imgur.com/iFJ6eUn.png" title="source: imgur.com" alt="post image">
+            <div class="caption">
+            <h3 class="">Blue Rocket</h3>
+
+              <div class="row-fluid">
+                <div class="span6">
+                  <p class="product-price">$8.00</p>
+                </div>
+                <div class="span6">
+                  <a class="btn btn-success btn-block">Add to cart</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="span4 col-sm-3">
+          <div class="thumbnail">
+            <img src="https://i.imgur.com/SqusEkm.png" title="source: imgur.com" alt="post image">
+            <div class="caption">
+            <h3 class="">Green Truck</h3>
+
+              <div class="row-fluid">
+                <div class="span6">
+                  <p class="product-price">$6.00</p>
+                </div>
+                <div class="span6">
+                  <a class="btn btn-success btn-block">Add to cart</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <!--  /GRID  ======================================= -->
+
+      <footer>
+        <p> Brought to you by Team SuperMegaAwesome (& some dragons) </p>
+      </footer>
     </body>
 </html>
