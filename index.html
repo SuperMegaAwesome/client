@@ -39,15 +39,10 @@
       <!-- replace with edited store banner, make responsive for different screen sizes -->
       <img src="http://via.placeholder.com/1250x150" alt="store image" class="center">
 
-      <div id='content' class="content">
-        <!-- WILL LIKELY DELETE THIS DIV -->
-        <!-- <div id='products'>
-        </div> -->
+      <div id="message"></div>
 
-        <!-- may not need this, but we'll see -->
-        <div id='checkout-page'>
-          <h1>This is the checkout page</h1>
-        </div>
+      <div id='content' class="content">
+
 
       </div>
       <!-- modals start here -->
@@ -70,6 +65,7 @@
                   <input type="password" class="to-clear" name="credentials[password]" placeholder="Enter Password">
                   <input type="password" class="to-clear" name="credentials[password_confirmation]" placeholder="Confirm Password">
                   <input type="submit" name="submit" value="Sign Up!">
+                  <p id="sign-up-error"></p>
                 </fieldset>
               </form>
 
@@ -79,6 +75,7 @@
                   <input type="text" class="to-clear" name="credentials[email]" placeholder="Enter Email">
                   <input type="password" class="to-clear" name="credentials[password]" placeholder="Enter Password">
                   <input type="submit" name="submit" value="Sign In">
+                  <p id="sign-in-error"></p>
                 </fieldset>
               </form>
 
@@ -86,6 +83,7 @@
                 <fieldset>
                   <legend>Sign Out!</legend>
                   <input class="sign-out" type="submit" value="Sign Out">
+                  <p id="sign-out-error"></p>
                 </fieldset>
               </form>
 
@@ -95,7 +93,7 @@
                   <input type="password" class="to-clear" name="passwords[old]" placeholder="Enter Current Password">
                   <input type="password" class="to-clear" name="passwords[new]" placeholder="Enter New Password">
                   <input type="submit" name="submit" value="Change Password">
-                  <p style="display: none" class="changed" id="password-changed">Password Changed!</p>
+                  <p id="password-error"></p>
                 </fieldset>
               </form>
             </div>
