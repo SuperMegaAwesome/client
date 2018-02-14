@@ -38,9 +38,15 @@ const signOutSuccess = () => {
   $('.after-out').show()
 }
 
+const changePasswordSuccess = function () {
+  console.log('Password changed')
+  $('form').trigger('reset')
+}
+
 module.exports = {
   signUpSuccess,
   failure,
   signInSuccess,
-  signOutSuccess
+  signOutSuccess,
+  changePasswordSuccess
 }

@@ -31,10 +31,19 @@ const onSignOut = (event) => {
     .fail(ui.failure)
 }
 
+const onChangePassword = (event) => {
+  event.preventDefault()
+  const data = getFormFields(event.target)
+  api.changePassword(data)
+    .done(ui.changePasswordSuccess)
+    .fail(ui.failure)
+}
+
 const addHandlers = () => {
   $('.sign-up').on('submit', onSignUp)
   $('.sign-in').on('submit', onSignIn)
   $('.sign-out').on('submit', onSignOut)
+  $('.change-password').on('submit', onChangePassword)
   $('#login-button').on('click', function () { $('#sign-in-modal').modal('show') })
 }
 
