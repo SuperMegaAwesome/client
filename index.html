@@ -110,7 +110,18 @@
           </div>
           <div class="modal-body">
             <div class="show-cart">
-              <div class="row cart-row">
+              <table class="table cart-table">
+                <tbody class="fill-this">
+                  <tr>
+                    <td>Items</td>
+                    <td>Quantity</td>
+                    <td>Price</td>
+                    <td>Delete</td>
+                  </tr>
+              </tbody>
+              </table>
+
+              <!-- <div class="row cart-row">
                 <div class="col-md-3">
                   <h5>Item</h5>
                 </div>
@@ -124,18 +135,19 @@
                   <h5>Remove</h5>
                 </div>
                 <br>
-              </div>
+              </div> -->
               <div class="cart-items">
-  	          </div>
+                
+              </div>
               <h3 class="no-items">Cart is Empty</h3>
       	      <h5>Total: </h5>
+            </div>
               <!-- need to put stripe checkout link here -->
               <form action="http://localhost:4741/charge" method="POST">
                 <!-- data-amount will need to be dynamic with cart total -->
                 <script
                   src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                   data-key="pk_test_UxDuOG7M2SZQLIDtrFMoZtRP"
-                  data-amount="100"
                   data-name="Demo Site"
                   data-description="Widget"
                   data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
@@ -145,7 +157,7 @@
       	      <script src="#"></script>
   	          <button style="display: none" type="button" class="btn btn-default create-order" id="save-order-button">Save for later</button>
   	          <!-- <button style="display: none" type="button" class="btn btn-default checkout" id="checkout-button">Checkout</button> -->
-      	      <h3 class="sign-in-warn">Must be signed in to complete this order</h3>
+      	      <h3 class="prod-namesign-in-warn">Must be signed in to complete this order</h3>
 
               <form id="get-orders">
                 <fieldset>
@@ -156,7 +168,6 @@
 
               <h4> Order History </h4>
               <h6 id="order-history"> </h6>
-            </div>
           </div>
           </div>
         </div>
@@ -164,144 +175,144 @@
       <!-- PROD GRID  ============================================================ -->
       <!-- add image URLS to img tags -->
       <div class="row-fluid container-folio">
-        <div class="span4 col-sm-3">
+        <div class="span4 col-sm-3 product ">
           <div class="thumbnail">
             <img src="https://i.imgur.com/vQY3Ae4.png" title="source: imgur.com" alt="post image">
             <div class="caption">
-            <h3 class="">Orange Car</h3>
+            <h3 class="prod-name">Orange Car</h3>
 
               <div class="row-fluid">
                 <div class="span6">
                   <p class="product-price">$5.00</p>
                 </div>
                 <div class="span6">
-                  <a class="btn btn-success btn-block">Add to cart</a>
+                  <a class="btn btn-success btn-block cart-btn">Add to cart</a>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="span4 col-sm-3">
+        <div class="span4 col-sm-3 product ">
           <div class="thumbnail">
             <img src="https://i.imgur.com/1zK3usw.png" title="source: imgur.com" alt="post image">
             <div class="caption">
-            <h3 class="">Purple Car</h3>
+            <h3 class="prod-name">Purple Car</h3>
 
               <div class="row-fluid">
                 <div class="span6">
                   <p class="product-price">$5.00</p>
                 </div>
                 <div class="span6">
-                  <a class="btn btn-success btn-block">Add to cart</a>
+                  <a class="btn btn-success btn-block cart-btn">Add to cart</a>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="span4 col-sm-3">
+        <div class="span4 col-sm-3 product ">
           <div class="thumbnail">
             <img src="https://i.imgur.com/VkeVAUy.png" title="source: imgur.com" alt="post image">
             <div class="caption">
-            <h3 class="">Green Plane</h3>
+            <h3 class="prod-name">Green Plane</h3>
 
               <div class="row-fluid">
                 <div class="span6">
                   <p class="product-price">$7.50</p>
                 </div>
                 <div class="span6">
-                  <a class="btn btn-success btn-block">Add to cart</a>
+                  <a class="btn btn-success btn-block cart-btn">Add to cart</a>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="span4 col-sm-3">
+        <div class="span4 col-sm-3 product ">
           <div class="thumbnail">
             <img src="https://i.imgur.com/uW9rAvG.png" title="source: imgur.com" alt="post image">
             <div class="caption">
-            <h3 class="">Red Truck</h3>
+            <h3 class="prod-name">Red Truck</h3>
 
               <div class="row-fluid">
                 <div class="span6">
                   <p class="product-price">$6.00</p>
                 </div>
                 <div class="span6">
-                  <a class="btn btn-success btn-block">Add to cart</a>
+                  <a class="btn btn-success btn-block cart-btn">Add to cart</a>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="span4 col-sm-3">
+        <div class="span4 col-sm-3 product ">
           <div class="thumbnail">
             <img src="https://i.imgur.com/7DEaSAT.png" title="source: imgur.com" alt="post image">
             <div class="caption">
-            <h3 class="">Blue Truck</h3>
+            <h3 class="prod-nameprod-name">Blue Truck</h3>
 
               <div class="row-fluid">
                 <div class="span6">
                   <p class="product-price">$6.00</p>
                 </div>
                 <div class="span6">
-                  <a class="btn btn-success btn-block">Add to cart</a>
+                  <a class="btn btn-success btn-block cart-btn">Add to cart</a>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="span4 col-sm-3">
+        <div class="span4 col-sm-3 product ">
           <div class="thumbnail">
             <img src="https://i.imgur.com/f3CaIqS.png" title="source: imgur.com" alt="post image">
             <div class="caption">
-            <h3 class="">Red Plane</h3>
+            <h3 class="prod-name">Red Plane</h3>
 
               <div class="row-fluid">
                 <div class="span6">
                   <p class="product-price">$7.50</p>
                 </div>
                 <div class="span6">
-                  <a class="btn btn-success btn-block">Add to cart</a>
+                  <a class="btn btn-success btn-block cart-btn">Add to cart</a>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="span4 col-sm-3">
+        <div class="span4 col-sm-3 product ">
           <div class="thumbnail">
             <img src="https://i.imgur.com/iFJ6eUn.png" title="source: imgur.com" alt="post image">
             <div class="caption">
-            <h3 class="">Blue Rocket</h3>
+            <h3 class="prod-name">Blue Rocket</h3>
 
               <div class="row-fluid">
                 <div class="span6">
                   <p class="product-price">$8.00</p>
                 </div>
                 <div class="span6">
-                  <a class="btn btn-success btn-block">Add to cart</a>
+                  <a class="btn btn-success btn-block cart-btn">Add to cart</a>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="span4 col-sm-3">
+        <div class="span4 col-sm-3 product ">
           <div class="thumbnail">
             <img src="https://i.imgur.com/SqusEkm.png" title="source: imgur.com" alt="post image">
             <div class="caption">
-            <h3 class="">Green Truck</h3>
+            <h3 class="prod-name">Green Truck</h3>
 
               <div class="row-fluid">
                 <div class="span6">
                   <p class="product-price">$6.00</p>
                 </div>
                 <div class="span6">
-                  <a class="btn btn-success btn-block">Add to cart</a>
+                  <a class="btn btn-success btn-block cart-btn">Add to cart</a>
                 </div>
               </div>
             </div>
