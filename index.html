@@ -130,7 +130,7 @@
               <h3 class="no-items">Cart is Empty</h3>
       	      <h5>Total: </h5>
               <!-- need to put stripe checkout link here -->
-              <form action="your-server-side-code" method="POST">
+              <form action="http://localhost:4741/charge" method="POST">
                 <!-- data-amount will need to be dynamic with cart total -->
                 <script
                   src="https://checkout.stripe.com/checkout.js" class="stripe-button"
