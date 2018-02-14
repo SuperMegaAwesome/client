@@ -1,6 +1,6 @@
 'use strict'
 
-// const store = require('./store')
+const store = require('./store')
 
 const signUpSuccess = function (data) {
   $('#sign-up-error').text('')
@@ -14,9 +14,8 @@ const failure = (error) => {
 }
 
 const signInSuccess = (data) => {
+  store.user = data.user
   $('#sign-in-modal').modal('hide')
-  // console.log('Signed in as: ' + app.user.email)
-  // console.log(app.user)
   $('form').trigger('reset')
   // $('#order-history').html('')
   $('#checkout-button').show()
@@ -25,8 +24,23 @@ const signInSuccess = (data) => {
   $('.after-out').hide()
 }
 
+const signOutSuccess = () => {
+  store.user = null
+  // console.log('Signed out')
+  $('#content').hide()
+  $('header').hide()
+  $('#welcome-page').show()
+  $('#sign-in-modal').modal('hide')
+  $('.profile').hide()
+  $('#checkout-button').hide()
+  $('.sign-in-warn').show()
+  $('.after-in').hide()
+  $('.after-out').show()
+}
+
 module.exports = {
   signUpSuccess,
   failure,
-  signInSuccess
+  signInSuccess,
+  signOutSuccess
 }

@@ -24,9 +24,17 @@ const onSignIn = (event) => {
     .fail(ui.failure)
 }
 
+const onSignOut = (event) => {
+  event.preventDefault()
+  api.signOut()
+    .done(ui.signOutSuccess)
+    .fail(ui.failure)
+}
+
 const addHandlers = () => {
   $('.sign-up').on('submit', onSignUp)
   $('.sign-in').on('submit', onSignIn)
+  $('.sign-out').on('submit', onSignOut)
   $('#login-button').on('click', function () { $('#sign-in-modal').modal('show') })
 }
 
