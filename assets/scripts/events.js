@@ -16,8 +16,17 @@ const onSignUp = (event) => {
     .catch(ui.failure)
 }
 
+const onSignIn = (event) => {
+  event.preventDefault()
+  const data = getFormFields(event.target)
+  api.signIn(data)
+    .done(ui.signInSuccess)
+    .fail(ui.failure)
+}
+
 const addHandlers = () => {
   $('.sign-up').on('submit', onSignUp)
+  $('.sign-in').on('submit', onSignIn)
   $('#login-button').on('click', function () { $('#sign-in-modal').modal('show') })
 }
 

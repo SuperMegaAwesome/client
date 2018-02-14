@@ -13,7 +13,20 @@ const failure = (error) => {
   console.error(error)
 }
 
+const signInSuccess = (data) => {
+  $('#sign-in-modal').modal('hide')
+  // console.log('Signed in as: ' + app.user.email)
+  // console.log(app.user)
+  $('form').trigger('reset')
+  // $('#order-history').html('')
+  $('#checkout-button').show()
+  $('.sign-in-warn').hide()
+  $('.after-in').show()
+  $('.after-out').hide()
+}
+
 module.exports = {
   signUpSuccess,
-  failure
+  failure,
+  signInSuccess
 }
