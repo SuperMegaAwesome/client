@@ -40,6 +40,7 @@ const signOutSuccess = () => {
 const changePasswordSuccess = function () {
   console.log('Password changed')
   $('form').trigger('reset')
+  $('#sign-in-modal').modal('hide')
   $('#message').text('Successfully changed password!').css('color', 'green')
 }
 
