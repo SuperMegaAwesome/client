@@ -29,7 +29,7 @@ const signOutSuccess = () => {
   $('#content').hide()
   $('#welcome-page').show()
   $('#sign-in-modal').modal('hide')
-  $('.profile').hide()
+  // $('.profile').hide()
   $('#checkout-button').hide()
   $('.sign-in-warn').show()
   $('.after-in').hide()
