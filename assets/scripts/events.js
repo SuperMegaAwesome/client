@@ -4,6 +4,7 @@ const getFormFields = require('../../lib/get-form-fields')
 
 const api = require('./api')
 const ui = require('./ui')
+const cartArray = []
 
 const onSignUp = (event) => {
   event.preventDefault()
@@ -40,17 +41,34 @@ const onChangePassword = (event) => {
 }
 
 const addToCart = function (event) {
-  const data = $(event.target)
-  console.log(data.parents())
   const name = $(event.target).parents('.product').find('.prod-name').text()
   const price = $(event.target).parents('.product').find('.product-price').text()
 
   console.log(name)
   console.log(price)
 
-  const tableVal = `<tr><td>${name}</td><td><input class="cart-quant" value=1></td><td>${price}</td></tr>`
+  const tableVal = `<tr><td class="name">${name}</td><td class="quantity"><input class="cart-quant" value=1></td><td class="price">${price}</td></tr>`
 
+  const product = {
+    name: name,
+    quantity: 1,
+    price: price
+  }
+  cartArray.push(product)
   $('.fill-this').append(tableVal)
+}
+
+const onCheckout = () => {
+  const price = cartArray[0].price.replace('$', '')
+  const data = {
+    cart: {
+      pastOrder: cartArray,
+      orderTotal: parseFloat(price) * cartArray[0].quantity * 100 // total in cents
+    }
+  }
+  console.log(data)
+  api.checkout(data)
+    .then(console.log)
 }
 
 const addHandlers = () => {
@@ -60,6 +78,7 @@ const addHandlers = () => {
   $('.change-password').on('submit', onChangePassword)
   $('#login-button').on('click', function () { $('#sign-in-modal').modal('show') })
   $('.cart-btn').on('click', addToCart)
+  $('#checkout').on('click', onCheckout)
 }
 
 module.exports = {

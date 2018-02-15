@@ -41,9 +41,21 @@ const changePassword = function (data) {
   })
 }
 
+const checkout = function (data) {
+  return $.ajax({
+    url: config.apiOrigin + '/carts',
+    method: 'POST',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    },
+    data
+  })
+}
+
 module.exports = {
   signUp,
   signIn,
   signOut,
-  changePassword
+  changePassword,
+  checkout
 }

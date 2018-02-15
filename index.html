@@ -143,7 +143,7 @@
       	      <h5>Total: </h5>
             </div>
               <!-- need to put stripe checkout link here -->
-              <form action="http://localhost:4741/charge" method="POST">
+              <form action="http://localhost:4741/charge" method="POST" style="display:none">
                 <!-- data-amount will need to be dynamic with cart total -->
                 <script
                   src="https://checkout.stripe.com/checkout.js" class="stripe-button"
@@ -154,8 +154,7 @@
                   data-locale="auto">
                 </script>
               </form>
-      	      <script src="#"></script>
-  	          <button style="display: none" type="button" class="btn btn-default create-order" id="save-order-button">Save for later</button>
+  	          <button type="button" class="btn btn-default create-order" id="checkout">checkout</button>
   	          <!-- <button style="display: none" type="button" class="btn btn-default checkout" id="checkout-button">Checkout</button> -->
       	      <h3 class="sign-in-warn">Must be signed in to complete this order</h3>
 
