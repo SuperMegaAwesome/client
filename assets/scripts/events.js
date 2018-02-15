@@ -47,7 +47,7 @@ const addToCart = function (event) {
   console.log(name)
   console.log(price)
 
-  const tableVal = `<tr><td class="name">${name}</td><td class="quantity"><input class="cart-quant" value=1></td><td class="price">${price}</td></tr>`
+  const tableVal = `<tr><td>${name}</td><td><input type=number class="cart-quant" min=1 value=1></td><td>${price}</td><td><button type="button" class="update-item-btn">Update</span></td><td><button type="button" class="delete-btn">Remove</span></td></tr>`
 
   const product = {
     name: name,
@@ -56,6 +56,8 @@ const addToCart = function (event) {
   }
   cartArray.push(product)
   $('.fill-this').append(tableVal)
+  $('.cart-btn').hide()
+  $('.add-to-cart').text('Added to cart!').css('green')
 }
 
 const onCheckout = () => {
@@ -79,6 +81,8 @@ const addHandlers = () => {
   $('#login-button').on('click', function () { $('#sign-in-modal').modal('show') })
   $('.cart-btn').on('click', addToCart)
   $('#checkout').on('click', onCheckout)
+  $('#checkout').on('click', function () { $('.cart-button').removeClass('hide') })
+  $('#checkout').on('click', function () { $('#checkout').hide() })
 }
 
 module.exports = {
