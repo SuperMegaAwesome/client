@@ -115,6 +115,7 @@
                   <tr>
                     <td>Items</td>
                     <td>Quantity</td>
+                    <td>        </td>
                     <td>Price</td>
                     <td>Delete</td>
                   </tr>
@@ -139,11 +140,18 @@
               <div class="cart-items">
 
               </div>
-              <h3 class="no-items">Cart is Empty</h3>
-      	      <h5>Total: </h5>
+              <div class="c-total">
+      	        <h5 class="dollars">Total: </h5><p class="dollars">$</p><input type="number" id="cart-total" class="cart-total dollars" step=0.01 min=0 placeholder=0.00 readonly>
+              </div>
             </div>
+            <br><br><br>
+
+            <button type="button" class="btn btn-default create-order" id="checkout">Checkout</button>
+            <button type="button" class="btn btn-default cart-button hide update-order" id="update">Update Order</button>
+            <button type="button" class="btn btn-default cart-button hide delete-order" id="delete">Cancel Order</button>
+
               <!-- need to put stripe checkout link here -->
-              <form action="http://localhost:4741/charge" method="POST" style="display:none">
+              <form action="http://localhost:4741/charge" method="POST" class="strip-btn cart-button hide">
                 <!-- data-amount will need to be dynamic with cart total -->
                 <script
                   src="https://checkout.stripe.com/checkout.js" class="stripe-button"
@@ -154,7 +162,7 @@
                   data-locale="auto">
                 </script>
               </form>
-  	          <button type="button" class="btn btn-default create-order" id="checkout">checkout</button>
+  	          <!-- <button type="button" class="btn btn-default create-order" id="checkout">checkout</button> -->
   	          <!-- <button style="display: none" type="button" class="btn btn-default checkout" id="checkout-button">Checkout</button> -->
       	      <h3 class="sign-in-warn">Must be signed in to complete this order</h3>
 
@@ -171,6 +179,7 @@
           </div>
         </div>
       </div>
+      <br><br>
       <!-- PROD GRID  ============================================================ -->
       <!-- add image URLS to img tags -->
       <div class="row-fluid container-folio">
@@ -185,13 +194,14 @@
                   <p class="product-price">$5.00</p>
                 </div>
                 <div class="span6">
-                  <a class="btn btn-success btn-block cart-btn">Add to cart</a>
+                  <p class="add-to-cart"></p>
+                  <a class="btn btn-success btn-block cart-btn hide">Add to cart</a>
                 </div>
               </div>
             </div>
           </div>
         </div>
-
+<!--
         <div class="span4 col-sm-3 product ">
           <div class="thumbnail">
             <img src="https://i.imgur.com/1zK3usw.png" title="source: imgur.com" alt="post image">
@@ -316,11 +326,11 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
 
       </div>
       <!--  /GRID  ======================================= -->
-
+      <br><br><br>
       <footer>
         <p> Brought to you by Team SuperMegaAwesome (& some dragons) </p>
       </footer>

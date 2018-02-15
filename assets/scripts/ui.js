@@ -21,6 +21,7 @@ const signInSuccess = (data) => {
   $('.after-in').show()
   $('.after-out').hide()
   $('#message').text('You have successfully signed in!').css('color', 'green')
+  $('.cart-btn').removeClass('hide')
 }
 
 const signOutSuccess = () => {
@@ -35,6 +36,8 @@ const signOutSuccess = () => {
   $('.after-in').hide()
   $('.after-out').show()
   $('#message').text('Successfully signed out!').css('color', 'green')
+  $('.add-to-cart').text('')
+  $('.cart-btn').addClass('hide')
 }
 
 const changePasswordSuccess = function () {

@@ -5,6 +5,7 @@ const getFormFields = require('../../lib/get-form-fields')
 const api = require('./api')
 const ui = require('./ui')
 const cartArray = []
+let total = 0
 
 const onSignUp = (event) => {
   event.preventDefault()
@@ -44,10 +45,7 @@ const addToCart = function (event) {
   const name = $(event.target).parents('.product').find('.prod-name').text()
   const price = $(event.target).parents('.product').find('.product-price').text()
 
-  console.log(name)
-  console.log(price)
-
-  const tableVal = `<tr><td class="name">${name}</td><td class="quantity"><input class="cart-quant" value=1></td><td class="price">${price}</td></tr>`
+  const tableVal = `<tr><td>${name}</td><td><input type=number class="cart-quant" min=1 value=1></td><td>${price}</td><td><button type="button" class="update-item-btn">Update</span></td><td><button type="button" class="delete-btn">Remove</span></td></tr>`
 
   const product = {
     name: name,
@@ -55,7 +53,13 @@ const addToCart = function (event) {
     price: price
   }
   cartArray.push(product)
+
+  const itemPrice = price.replace('$', '')
+  document.getElementById('cart-total').value = itemPrice
+
   $('.fill-this').append(tableVal)
+  $('.cart-btn').addClass('hide')
+  $('.add-to-cart').text('Added to cart!').css('green')
 }
 
 const onCheckout = () => {
@@ -66,9 +70,26 @@ const onCheckout = () => {
       orderTotal: parseFloat(price) * cartArray[0].quantity * 100 // total in cents
     }
   }
-  console.log(data)
+
   api.checkout(data)
     .then(console.log)
+}
+
+const onUpdateItem = (event) => {
+  const qty = $('.cart-quant').val()
+  const price = cartArray[0].price.replace('$', '')
+  total = (price * qty).toFixed(2)
+
+  document.getElementById('cart-total').value = total
+}
+
+const onRemoveItem = (event) => {
+  console.log(event.target)
+  const data = $(event.target)
+  console.log(data.parents('tr'))
+  data.parents('tr').remove()
+  const resetVal = 0.00
+  document.getElementById('cart-total').value = resetVal.toFixed(2)
 }
 
 const addHandlers = () => {
@@ -79,6 +100,10 @@ const addHandlers = () => {
   $('#login-button').on('click', function () { $('#sign-in-modal').modal('show') })
   $('.cart-btn').on('click', addToCart)
   $('#checkout').on('click', onCheckout)
+  $('#checkout').on('click', function () { $('.cart-button').removeClass('hide') })
+  $('#checkout').on('click', function () { $('#checkout').hide() })
+  $('body').on('click', '.update-item-btn', onUpdateItem)
+  $('body').on('click', '.delete-btn', onRemoveItem)
 }
 
 module.exports = {
