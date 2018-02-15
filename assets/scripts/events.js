@@ -77,6 +77,7 @@ const onCheckout = () => {
 
 const onUpdateItem = (event) => {
   const qty = $('.cart-quant').val()
+  cartArray[0].quantity = qty
   const price = cartArray[0].price.replace('$', '')
   total = (price * qty).toFixed(2)
 
