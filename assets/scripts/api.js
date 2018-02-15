@@ -53,10 +53,20 @@ const checkout = function (data) {
 }
 
 const updateOrder = function (data) {
-  console.log(data)
   return $.ajax({
     url: config.apiOrigin + '/carts/' + store.cart._id,
     method: 'PATCH',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    },
+    data
+  })
+}
+
+const cancelOrder = function (data) {
+  return $.ajax({
+    url: config.apiOrigin + '/carts/' + store.cart._id,
+    method: 'DELETE',
     headers: {
       Authorization: 'Token token=' + store.user.token
     },
@@ -70,5 +80,6 @@ module.exports = {
   signOut,
   changePassword,
   checkout,
-  updateOrder
+  updateOrder,
+  cancelOrder
 }

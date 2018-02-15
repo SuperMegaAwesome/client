@@ -49,7 +49,7 @@ const addToCart = function (event) {
   const name = $(event.target).parents('.product').find('.prod-name').text()
   const price = $(event.target).parents('.product').find('.product-price').text()
 
-  const tableVal = `<tr><td>${name}</td><td><input type=number class="cart-quant" min=1 value=1></td><td>${price}</td><td><button type="button" class="update-item-btn">Update</span></td><td><button type="button" class="delete-btn">Remove</span></td></tr>`
+  const tableVal = `<tr class="cart-item"><td>${name}</td><td><input type=number class="cart-quant" min=1 value=1></td><td>${price}</td><td><button type="button" class="update-item-btn">Update</span></td><td><button type="button" class="delete-btn">Remove</span></td></tr>`
 
   const product = {
     name: name,
@@ -114,6 +114,13 @@ const onUpdateOrder = (event) => {
     .catch(ui.updateOrderFailure)
 }
 
+const onCancelOrder = function (event) {
+  console.log(event.target)
+  api.cancelOrder()
+    .then(ui.cancelOrderSuccess)
+    .catch(ui.cancelOrderFailure)
+}
+
 const addHandlers = () => {
   $('.sign-up').on('submit', onSignUp)
   $('.sign-in').on('submit', onSignIn)
@@ -125,6 +132,7 @@ const addHandlers = () => {
   $('body').on('click', '.update-item-btn', onUpdateItem)
   $('body').on('click', '.delete-btn', onRemoveItem)
   $('#update').on('click', onUpdateOrder)
+  $('#delete').on('click', onCancelOrder)
 }
 
 module.exports = {

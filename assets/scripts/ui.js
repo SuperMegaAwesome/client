@@ -81,12 +81,25 @@ const checkoutFailure = function (error) {
   console.error(error)
 }
 
-const updateOrderSuccess = function (data) {
+const updateOrderSuccess = function () {
   // put in user message indicating success
-  console.log(data)
 }
 
 const updateOrderFailure = function (error) {
+  console.error(error)
+}
+
+const cancelOrderSuccess = function () {
+  store.cart = null
+  const resetVal = 0.00
+  document.getElementById('cart-total').value = resetVal.toFixed(2)
+  $('.cart-item').remove()
+  // message indicating success
+  $('.cart-button').addClass('hide')
+  $('#checkout').show()
+}
+
+const cancelOrderFailure = function (error) {
   console.error(error)
 }
 
@@ -102,5 +115,7 @@ module.exports = {
   checkoutSuccess,
   checkoutFailure,
   updateOrderSuccess,
-  updateOrderFailure
+  updateOrderFailure,
+  cancelOrderSuccess,
+  cancelOrderFailure
 }
