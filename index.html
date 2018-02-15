@@ -140,9 +140,12 @@
               <div class="cart-items">
 
               </div>
-              <h3 class="no-items">Cart is Empty</h3>
-      	      <h5>Total: </h5>
+              <div class="c-total">
+      	        <h5 class="dollars">Total: </h5><p class="dollars">$</p><input type="number" id="cart-total" class="cart-total dollars" step=0.01 min=0 placeholder=0.00 readonly>
+              </div>
             </div>
+            <br><br><br>
+
             <button type="button" class="btn btn-default create-order" id="checkout">Checkout</button>
             <button type="button" class="btn btn-default cart-button hide update-order" id="update">Update Order</button>
             <button type="button" class="btn btn-default cart-button hide delete-order" id="delete">Cancel Order</button>
@@ -176,6 +179,7 @@
           </div>
         </div>
       </div>
+      <br><br>
       <!-- PROD GRID  ============================================================ -->
       <!-- add image URLS to img tags -->
       <div class="row-fluid container-folio">
@@ -189,8 +193,9 @@
                 <div class="span6">
                   <p class="product-price">$5.00</p>
                 </div>
-                <div class="span6 add-to-cart">
-                  <a class="btn btn-success btn-block cart-btn">Add to cart</a>
+                <div class="span6">
+                  <p class="add-to-cart"></p>
+                  <a class="btn btn-success btn-block cart-btn hide">Add to cart</a>
                 </div>
               </div>
             </div>
@@ -325,7 +330,7 @@
 
       </div>
       <!--  /GRID  ======================================= -->
-
+      <br><br><br>
       <footer>
         <p> Brought to you by Team SuperMegaAwesome (& some dragons) </p>
       </footer>

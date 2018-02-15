@@ -9,7 +9,9 @@ body {
 
 footer {
   background: none;
+  bottom: 0;
   color: $footer-text;
+  position: absolute;
 }
 
 .thumbnail {
@@ -19,4 +21,9 @@ footer {
 .btn-success {
   background-color: $button;
   border-color: $button-border;
+}
+
+.dollars {
+  float: left;
+  padding: 5px;
 }
