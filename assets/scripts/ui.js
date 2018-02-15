@@ -69,6 +69,27 @@ const signOutFailure = function (error) {
   $('#message').text('Error signing out').css('color', 'red')
 }
 
+const checkoutSuccess = function (data) {
+  store.cart = data.cart
+  console.log(data.cart)
+  console.log('checkout success')
+  $('.cart-button').removeClass('hide')
+  $('#checkout').hide()
+}
+
+const checkoutFailure = function (error) {
+  console.error(error)
+}
+
+const updateOrderSuccess = function (data) {
+  // put in user message indicating success
+  console.log(data)
+}
+
+const updateOrderFailure = function (error) {
+  console.error(error)
+}
+
 module.exports = {
   signUpSuccess,
   signInSuccess,
@@ -77,5 +98,9 @@ module.exports = {
   signInFailure,
   signUpFailure,
   changePasswordFailure,
-  signOutFailure
+  signOutFailure,
+  checkoutSuccess,
+  checkoutFailure,
+  updateOrderSuccess,
+  updateOrderFailure
 }
