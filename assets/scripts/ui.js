@@ -1,6 +1,7 @@
 'use strict'
 
 const store = require('./store')
+// const historyTemplate = require('./templates/order-history.handlebars')
 
 const signUpSuccess = function (data) {
   $('#sign-up-error').text('')
@@ -69,6 +70,48 @@ const signOutFailure = function (error) {
   $('#message').text('Error signing out').css('color', 'red')
 }
 
+const checkoutSuccess = function (data) {
+  store.cart = data.cart
+  console.log(data.cart)
+  console.log('checkout success')
+  $('.cart-button').removeClass('hide')
+  $('#checkout').hide()
+}
+
+const checkoutFailure = function (error) {
+  console.error(error)
+}
+
+const updateOrderSuccess = function () {
+  // put in user message indicating success
+}
+
+const updateOrderFailure = function (error) {
+  console.error(error)
+}
+
+const cancelOrderSuccess = function () {
+  store.cart = null
+  const resetVal = 0.00
+  document.getElementById('cart-total').value = resetVal.toFixed(2)
+  $('.cart-item').remove()
+  // message indicating success
+  $('.cart-button').addClass('hide')
+  $('#checkout').show()
+}
+
+const cancelOrderFailure = function (error) {
+  console.error(error)
+}
+
+const getHistorySuccess = function (data) {
+  // const historyHTML = historyTemplate({ carts: data.carts })
+  // $('#order-history').html(historyHTML)
+  console.log(data)
+  console.log(data.carts)
+  console.log(data.carts[0].pastOrder[0])
+}
+
 module.exports = {
   signUpSuccess,
   signInSuccess,
@@ -77,5 +120,12 @@ module.exports = {
   signInFailure,
   signUpFailure,
   changePasswordFailure,
-  signOutFailure
+  signOutFailure,
+  checkoutSuccess,
+  checkoutFailure,
+  updateOrderSuccess,
+  updateOrderFailure,
+  cancelOrderSuccess,
+  cancelOrderFailure,
+  getHistorySuccess
 }

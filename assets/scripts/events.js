@@ -12,40 +12,44 @@ const onSignUp = (event) => {
   const data = getFormFields(event.target)
   api.signUp(data)
     .then(ui.signUpSuccess)
+    .catch(ui.signUpFailure)
     // want to automatically sign in
     .then(() => api.signIn(data))
     .then(ui.signInSuccess)
-    .catch(ui.failure)
+    .catch(ui.signInFailure)
+  $('.after-out').trigger('reset')
 }
 
 const onSignIn = (event) => {
   event.preventDefault()
   const data = getFormFields(event.target)
   api.signIn(data)
-    .done(ui.signInSuccess)
-    .fail(ui.failure)
+    .then(ui.signInSuccess)
+    .catch(ui.signInFailure)
+  $('.after-out').trigger('reset')
 }
 
 const onSignOut = (event) => {
   event.preventDefault()
   api.signOut()
-    .done(ui.signOutSuccess)
-    .fail(ui.failure)
+    .then(ui.signOutSuccess)
+    .fail(ui.signOutFailure)
 }
 
 const onChangePassword = (event) => {
   event.preventDefault()
   const data = getFormFields(event.target)
   api.changePassword(data)
-    .done(ui.changePasswordSuccess)
-    .fail(ui.failure)
+    .then(ui.changePasswordSuccess)
+    .fail(ui.changePasswordFailure)
+  $('.after-in').trigger('reset')
 }
 
 const addToCart = function (event) {
   const name = $(event.target).parents('.product').find('.prod-name').text()
   const price = $(event.target).parents('.product').find('.product-price').text()
 
-  const tableVal = `<tr><td>${name}</td><td><input type=number class="cart-quant" min=1 value=1></td><td>${price}</td><td><button type="button" class="update-item-btn">Update</span></td><td><button type="button" class="delete-btn">Remove</span></td></tr>`
+  const tableVal = `<tr class="cart-item"><td>${name}</td><td><input type=number class="cart-quant" min=1 value=1></td><td>${price}</td><td><button type="button" class="update-item-btn">Update</span></td><td><button type="button" class="delete-btn">Remove</span></td></tr>`
 
   const product = {
     name: name,
@@ -72,7 +76,8 @@ const onCheckout = () => {
   }
 
   api.checkout(data)
-    .then(console.log)
+    .then(ui.checkoutSuccess)
+    .catch(ui.checkoutFailure)
 }
 
 const onUpdateItem = (event) => {
@@ -93,6 +98,36 @@ const onRemoveItem = (event) => {
   document.getElementById('cart-total').value = resetVal.toFixed(2)
 }
 
+const onUpdateOrder = (event) => {
+  console.log(event.target)
+  const qty = $('.cart-quant').val()
+  cartArray[0].quantity = qty
+  const price = cartArray[0].price.replace('$', '')
+  const data = {
+    cart: {
+      pastOrder: cartArray,
+      orderTotal: parseFloat(price) * cartArray[0].quantity * 100 // total in cents
+    }
+  }
+  api.updateOrder(data)
+    .then(ui.updateOrderSuccess)
+    .catch(ui.updateOrderFailure)
+}
+
+const onCancelOrder = function (event) {
+  console.log(event.target)
+  api.cancelOrder()
+    .then(ui.cancelOrderSuccess)
+    .catch(ui.cancelOrderFailure)
+}
+
+const onGetHistory = function (event) {
+  event.preventDefault()
+  console.log(event.target)
+  api.getHistory()
+    .then(ui.getHistorySuccess)
+}
+
 const addHandlers = () => {
   $('.sign-up').on('submit', onSignUp)
   $('.sign-in').on('submit', onSignIn)
@@ -101,10 +136,11 @@ const addHandlers = () => {
   $('#login-button').on('click', function () { $('#sign-in-modal').modal('show') })
   $('.cart-btn').on('click', addToCart)
   $('#checkout').on('click', onCheckout)
-  $('#checkout').on('click', function () { $('.cart-button').removeClass('hide') })
-  $('#checkout').on('click', function () { $('#checkout').hide() })
   $('body').on('click', '.update-item-btn', onUpdateItem)
   $('body').on('click', '.delete-btn', onRemoveItem)
+  $('#update').on('click', onUpdateOrder)
+  $('#delete').on('click', onCancelOrder)
+  $('#get-orders').on('click', onGetHistory)
 }
 
 module.exports = {
