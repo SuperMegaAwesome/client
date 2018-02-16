@@ -132,16 +132,13 @@ const onUpdateItem = (event) => {
 }
 
 const onRemoveItem = (event) => {
-  console.log(event.target)
   const data = $(event.target)
-  console.log(data.parents('tr'))
   data.parents('tr').remove()
   const resetVal = 0.00
   document.getElementById('cart-total').value = resetVal.toFixed(2)
 }
 
 const onUpdateOrder = (event) => {
-  console.log(event.target)
   const qty = $('.cart-quant').val()
   cartArray[0].quantity = qty
   const price = cartArray[0].price.replace('$', '')
@@ -157,7 +154,6 @@ const onUpdateOrder = (event) => {
 }
 
 const onCancelOrder = function (event) {
-  console.log(event.target)
   api.cancelOrder()
     .then(ui.cancelOrderSuccess)
     .catch(ui.cancelOrderFailure)
@@ -165,7 +161,6 @@ const onCancelOrder = function (event) {
 
 const onGetHistory = function (event) {
   event.preventDefault()
-  console.log(event.target)
   api.getHistory()
     .then(ui.getHistorySuccess)
 }

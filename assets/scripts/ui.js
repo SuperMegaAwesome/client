@@ -1,18 +1,15 @@
 'use strict'
 
 const store = require('./store')
-// const historyTemplate = require('./templates/order-history.handlebars')
+const historyTemplate = require('./templates/order-history.handlebars')
 
 const signUpSuccess = function (data) {
   $('#sign-up-error').text('')
   $('form').trigger('reset')
-  console.log('sign up worked!')
-  // add message div to HTML
   $('#message').text('Successfully Signed Up!').css('color', 'green')
 }
 
 const signInSuccess = (data) => {
-  console.log('signed in!')
   store.user = data.user
   $('#sign-in-modal').modal('hide')
   $('form').trigger('reset')
@@ -105,8 +102,9 @@ const cancelOrderFailure = function (error) {
 }
 
 const getHistorySuccess = function (data) {
-  // const historyHTML = historyTemplate({ carts: data.carts })
-  // $('#order-history').html(historyHTML)
+  const historyHTML = historyTemplate({ carts: data.carts })
+  $('#order-history').html(historyHTML)
+  console.log(historyHTML)
   console.log(data)
   console.log(data.carts)
   console.log(data.carts[0].pastOrder[0])
