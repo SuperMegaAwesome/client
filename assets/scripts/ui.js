@@ -78,6 +78,10 @@ const checkoutFailure = function () {
 
 const updateOrderSuccess = function () {
   $('#cart-message').text('Order successfully updated!').css('color', 'green')
+  $('#cart-total').trigger('reset')
+  $('#checkout').addClass('hide')
+  $('.cart-btn').removeClass('hide')
+  $('.add-to-cart').text('')
 }
 
 const updateOrderFailure = function () {
