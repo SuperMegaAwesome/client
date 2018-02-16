@@ -121,6 +121,13 @@ const onCancelOrder = function (event) {
     .catch(ui.cancelOrderFailure)
 }
 
+const onGetHistory = function (event) {
+  event.preventDefault()
+  console.log(event.target)
+  api.getHistory()
+    .then(ui.getHistorySuccess)
+}
+
 const addHandlers = () => {
   $('.sign-up').on('submit', onSignUp)
   $('.sign-in').on('submit', onSignIn)
@@ -133,6 +140,7 @@ const addHandlers = () => {
   $('body').on('click', '.delete-btn', onRemoveItem)
   $('#update').on('click', onUpdateOrder)
   $('#delete').on('click', onCancelOrder)
+  $('#get-orders').on('click', onGetHistory)
 }
 
 module.exports = {

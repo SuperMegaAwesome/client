@@ -1,6 +1,7 @@
 'use strict'
 
 const store = require('./store')
+// const historyTemplate = require('./templates/order-history.handlebars')
 
 const signUpSuccess = function (data) {
   $('#sign-up-error').text('')
@@ -103,6 +104,14 @@ const cancelOrderFailure = function (error) {
   console.error(error)
 }
 
+const getHistorySuccess = function (data) {
+  // const historyHTML = historyTemplate({ carts: data.carts })
+  // $('#order-history').html(historyHTML)
+  console.log(data)
+  console.log(data.carts)
+  console.log(data.carts[0].pastOrder[0])
+}
+
 module.exports = {
   signUpSuccess,
   signInSuccess,
@@ -117,5 +126,6 @@ module.exports = {
   updateOrderSuccess,
   updateOrderFailure,
   cancelOrderSuccess,
-  cancelOrderFailure
+  cancelOrderFailure,
+  getHistorySuccess
 }

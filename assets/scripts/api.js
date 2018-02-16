@@ -74,6 +74,16 @@ const cancelOrder = function (data) {
   })
 }
 
+const getHistory = function () {
+  return $.ajax({
+    url: config.apiOrigin + '/carts',
+    method: 'GET',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    }
+  })
+}
+
 module.exports = {
   signUp,
   signIn,
@@ -81,5 +91,6 @@ module.exports = {
   changePassword,
   checkout,
   updateOrder,
-  cancelOrder
+  cancelOrder,
+  getHistory
 }
