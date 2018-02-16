@@ -1,0 +1,23 @@
+{{#each carts as |cart|}}
+
+<!-- template to display cart -->
+{{#if cart.orderTotal}}
+<div class="carts-content" data-id="{{cart._id}}">
+  <div class="row">
+    <div class="col-md-12">
+  	 {{#cart.pastOrder}}
+      <h5><strong>Item Name:</strong> {{name}}</h5>
+      <h5><strong>Item Price:</strong> {{price}}</h5>
+      <h5><strong>Quantity:</strong> {{quantity}}</h5>
+  	{{/cart.pastOrder}}
+      <h5><strong>Order Total:</strong> ${{cart.orderTotalUSD}}</h5>
+      <br>
+    </div>
+  </div>
+</div>
+{{else}}
+  <h5>--Discarded Order--</h5>
+  <br>
+{{/if}}
+
+{{/each}}
