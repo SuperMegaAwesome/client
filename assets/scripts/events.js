@@ -194,6 +194,9 @@ const addHandlers = () => {
   $('#get-orders').on('click', onGetHistory)
   $('#cart-button').on('click', function () { $('#order-history').html('') })
   $('#cart-button').on('click', function () { $('#history-message').html('') })
+  $('#cart-button').on('click', function () { $('#cart-message').html('') })
+  $('#cart').on('hidden.bs.modal', function () { if (store.cart) { onCancelOrder() } })
+  $('.cart-btn').on('click', function () { $('#checkout').removeClass('hide') })
   // ---------------------- CUSTOM STRIPE INTEGRATION HANDLERS -------------------------
   $('#purchase').on('click', (event) => {
     event.preventDefault()
