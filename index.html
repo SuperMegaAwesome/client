@@ -11,6 +11,8 @@
       <!-- Do not add `script` tags-->
       <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+      <script src="https://checkout.stripe.com/checkout.js"></script>
+      
     </head>
     <body class="container-fluid">
       <header>
@@ -153,11 +155,11 @@
             <button type="button" class="btn btn-default create-order" id="checkout">Checkout</button>
             <button type="button" class="btn btn-default cart-button hide update-order" id="update">Update Order</button>
             <button type="button" class="btn btn-default cart-button hide delete-order" id="delete">Cancel Order</button>
-
+            <button type="button" class="btn btn-default cart-button hide purchase" id="purchase">Purchase</button>
               <!-- need to put stripe checkout link here -->
-              <form action="http://localhost:4741/charge" method="POST" class="strip-btn cart-button hide">
+              <!-- <form action="http://localhost:4741/charge" method="POST" class="strip-btn cart-button hide"> -->
                 <!-- data-amount will need to be dynamic with cart total -->
-                <script
+                <!-- <script
                   src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                   data-key="pk_test_UxDuOG7M2SZQLIDtrFMoZtRP"
                   data-name="Demo Site"
@@ -165,7 +167,7 @@
                   data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
                   data-locale="auto">
                 </script>
-              </form>
+              </form> -->
   	          <!-- <button type="button" class="btn btn-default create-order" id="checkout">checkout</button> -->
   	          <!-- <button style="display: none" type="button" class="btn btn-default checkout" id="checkout-button">Checkout</button> -->
       	      <h3 class="sign-in-warn">Must be signed in to complete this order</h3>
