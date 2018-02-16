@@ -19,7 +19,6 @@ const handler = StripeCheckout.configure({
   locale: 'auto',
   token: function (token) {
     const ajaxTokenPost = function (theToken) {
-      console.log(theToken)
       return $.ajax({
         url: config.apiOrigin + '/charge',
         method: 'POST',
@@ -35,12 +34,9 @@ const handler = StripeCheckout.configure({
         // Uses cancelOrder UI function to clear the cart UI
         ui.updateOrderSuccess()
         // Success messaging here!
-        console.log('Purchase success!')
+        // console.log('Purchase success!')
       })
-      .catch(error => {
-        console.log(error)
-      }
-      )
+      .catch(() => { $('#cart-message').text('Card Declined').css('color', 'red') })
   }
 
 })
