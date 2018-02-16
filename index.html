@@ -6,6 +6,7 @@
 
       <!-- Do not add `link` tags-->
       <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
       <!-- Do not add `script` tags-->
       <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
@@ -19,9 +20,6 @@
       </div> -->
         <nav class="navbar navbar-inverse sign">
           <ul class="nav navbar-nav">
-            <li id='cart-button' class="cart" data-toggle="modal" data-target="#cart">
-              <a>Cart</a>
-            </li>
             <!-- <li class="profile" style="display: none" data-toggle="modal" data-target="#profile">
               <a>Profile</a>
             </li> -->
@@ -32,12 +30,18 @@
             <li class="sign signout default-show" data-target="#log-in">
               <a id='login-button'>Log In</a>
             </li>
+            <li id='cart-button' class="cart" data-toggle="modal" data-target="#cart">
+              <a><span class="glyphicon glyphicon-shopping-cart"></span></a>
+            </li>
           </ul>
         </nav>
       </header>
 
       <!-- replace with edited store banner, make responsive for different screen sizes -->
-      <img src="http://via.placeholder.com/1250x150" alt="store image" class="center">
+      <div class="brand">
+        <h1>NOZAMA <span>TOYS!</span></h1>
+        <!-- <img class="center" alt="brand image"> -->
+      </div>
 
       <div id="message"></div>
 
