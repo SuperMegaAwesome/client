@@ -50,13 +50,19 @@ const handler = StripeCheckout.configure({
 const onSignUp = (event) => {
   event.preventDefault()
   const data = getFormFields(event.target)
-  api.signUp(data)
-    .then(ui.signUpSuccess)
-    .catch(ui.signUpFailure)
-    // want to automatically sign in
-    .then(() => api.signIn(data))
-    .then(ui.signInSuccess)
-    .catch(ui.signInFailure)
+  const password = $('.sign-up input[name="credentials[password]"]').val()
+  const passConfirm = $('.sign-up input[name="credentials[password_confirmation]"]').val()
+  if (password === passConfirm) {
+    api.signUp(data)
+      .then(ui.signUpSuccess)
+      .catch(ui.signUpFailure)
+      // want to automatically sign in
+      .then(() => api.signIn(data))
+      .then(ui.signInSuccess)
+      .catch(ui.signInFailure)
+  } else {
+    ui.signUpFailure()
+  }
   $('.after-out').trigger('reset')
   $('input').prop('required', true)
 }
