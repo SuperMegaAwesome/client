@@ -68,8 +68,8 @@ const signOutFailure = function () {
 const checkoutSuccess = function (data) {
   store.cart = data.cart
   $('.cart-button').removeClass('hide')
-  $('#checkout').hide()
-  $('#cart-message').text('Select "Update", "Cancel", or "Purchase" to proceed').css('color', 'green')
+  $('#checkout').addClass('hide')
+  $('#cart-message').text('Select "Cancel" or "Purchase" to proceed').css('color', 'green')
 }
 
 const checkoutFailure = function () {
@@ -77,7 +77,7 @@ const checkoutFailure = function () {
 }
 
 const updateOrderSuccess = function () {
-  $('#cart-message').text('Order successfully updated!').css('color', 'green')
+  $('#cart-message').text('Purchase successful!').css('color', 'green')
   $('#cart-total').trigger('reset')
   $('#checkout').addClass('hide')
   $('.cart-btn').removeClass('hide')
@@ -95,7 +95,10 @@ const cancelOrderSuccess = function () {
   $('.cart-item').remove()
   // message indicating success
   $('.cart-button').addClass('hide')
-  $('#checkout').show()
+  $('#cart-message').text('Order canceled').css('color', 'green')
+  $('#cart-total').trigger('reset')
+  $('.cart-btn').removeClass('hide')
+  $('.add-to-cart').text('')
 }
 
 const cancelOrderFailure = function () {
