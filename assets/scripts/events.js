@@ -108,7 +108,7 @@ const addToCart = function (event) {
     quantity: 1,
     price: price
   }
-  cartArray.push(product)
+  cartArray[0] = product
 
   const itemPrice = price.replace('$', '')
   document.getElementById('cart-total').value = itemPrice
@@ -119,11 +119,10 @@ const addToCart = function (event) {
 }
 
 const onCheckout = () => {
-  const price = cartArray[0].price.replace('$', '')
   const data = {
     cart: {
-      pastOrder: cartArray,
-      orderTotal: parseFloat(price) * cartArray[0].quantity * 100 // total in cents
+      pastOrder: [],
+      orderTotal: null
     }
   }
 

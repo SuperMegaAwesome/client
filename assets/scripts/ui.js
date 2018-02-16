@@ -101,11 +101,6 @@ const cancelOrderFailure = function () {
 const getHistorySuccess = function (data) {
   const historyHTML = historyTemplate({ carts: data.carts })
   $('#order-history').html(historyHTML)
-  $('#history-message').text('Order history successfully retrieved!').css('color', 'green')
-  console.log(historyHTML)
-  console.log(data)
-  console.log(data.carts)
-  console.log(data.carts[0].pastOrder[0])
 }
 
 const getHistoryFailure = function () {
