@@ -193,7 +193,6 @@ const addHandlers = () => {
   $('#get-orders').on('click', onGetHistory)
   $('#cart-button').on('click', function () { $('#order-history').html('') })
   $('#cart-button').on('click', function () { $('#history-message').html('') })
-
   // ---------------------- CUSTOM STRIPE INTEGRATION HANDLERS -------------------------
   $('#purchase').on('click', (event) => {
     event.preventDefault()
