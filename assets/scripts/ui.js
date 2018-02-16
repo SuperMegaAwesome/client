@@ -110,6 +110,10 @@ const getHistorySuccess = function (data) {
   console.log(data.carts[0].pastOrder[0])
 }
 
+const getHistoryFailure = function () {
+
+}
+
 module.exports = {
   signUpSuccess,
   signInSuccess,

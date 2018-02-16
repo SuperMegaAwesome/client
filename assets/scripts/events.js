@@ -163,6 +163,7 @@ const onGetHistory = function (event) {
   event.preventDefault()
   api.getHistory()
     .then(ui.getHistorySuccess)
+    .catch(ui.getHistoryFailure)
 }
 // --------------------------------------------------------------------
 
