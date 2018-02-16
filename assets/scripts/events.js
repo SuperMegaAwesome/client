@@ -108,22 +108,22 @@ const addToCart = function (event) {
     quantity: 1,
     price: price
   }
-  cartArray.push(product)
+  cartArray[0] = product
 
   const itemPrice = price.replace('$', '')
   document.getElementById('cart-total').value = itemPrice
 
   $('.fill-this').append(tableVal)
   $('.cart-btn').addClass('hide')
-  $('.add-to-cart').text('Added to cart!').css('green')
+  $('.add-to-cart').text('Added to cart!').css('color', 'green')
+  $('#checkout').removeClass('hide')
 }
 
 const onCheckout = () => {
-  const price = cartArray[0].price.replace('$', '')
   const data = {
     cart: {
-      pastOrder: cartArray,
-      orderTotal: parseFloat(price) * cartArray[0].quantity * 100 // total in cents
+      pastOrder: [],
+      orderTotal: 0
     }
   }
 
@@ -146,6 +146,7 @@ const onRemoveItem = (event) => {
   data.parents('tr').remove()
   const resetVal = 0.00
   document.getElementById('cart-total').value = resetVal.toFixed(2)
+  $('#checkout').addClass('hide')
 }
 
 const onUpdateOrder = (event) => {
@@ -188,7 +189,7 @@ const addHandlers = () => {
   $('#checkout').on('click', onCheckout)
   $('body').on('click', '.update-item-btn', onUpdateItem)
   $('body').on('click', '.delete-btn', onRemoveItem)
-  $('#update').on('click', onUpdateOrder)
+  $('#purchase').on('click', onUpdateOrder)
   $('#delete').on('click', onCancelOrder)
   $('#get-orders').on('click', onGetHistory)
   $('#cart-button').on('click', function () { $('#order-history').html('') })
