@@ -7,11 +7,11 @@ const ui = require('./ui')
 const store = require('./store')
 const config = require('./config')
 
-// --------Global Variables for the current cart and current cart total------------ 
+// --------Global Variables for the current cart and current cart total------------
 const cartArray = []
 let total = 0
 
-// -----------------------!!!!!STRIPE MAGIC BELOW!!!!!-------------------------------- 
+// -----------------------!!!!!STRIPE MAGIC BELOW!!!!!--------------------------------
 // StripeCheckout is imported via script tag in html. It's not an error
 const handler = StripeCheckout.configure({
   key: 'pk_test_UxDuOG7M2SZQLIDtrFMoZtRP',
@@ -46,7 +46,7 @@ const handler = StripeCheckout.configure({
 })
 // --------------------------- END OF STRIPE MAGIC -------------------------------
 
-// --------------------- Auth Events ------------------------ 
+// --------------------- Auth Events ------------------------
 const onSignUp = (event) => {
   event.preventDefault()
   const data = getFormFields(event.target)
@@ -58,6 +58,7 @@ const onSignUp = (event) => {
     .then(ui.signInSuccess)
     .catch(ui.signInFailure)
   $('.after-out').trigger('reset')
+  $('input').prop('required', true)
 }
 
 const onSignIn = (event) => {
@@ -67,11 +68,13 @@ const onSignIn = (event) => {
     .then(ui.signInSuccess)
     .catch(ui.signInFailure)
   $('.after-out').trigger('reset')
+  $('input').prop('required', true)
 }
 
 const onSignOut = (event) => {
   event.preventDefault()
   api.signOut()
+    .then(ui.cancelOrderSuccess)
     .then(ui.signOutSuccess)
     .fail(ui.signOutFailure)
 }
@@ -83,6 +86,7 @@ const onChangePassword = (event) => {
     .then(ui.changePasswordSuccess)
     .fail(ui.changePasswordFailure)
   $('.after-in').trigger('reset')
+  $('input').prop('required', true)
 }
 // ---------------------------------- End of Auth Events ----------------------
 
@@ -181,13 +185,15 @@ const addHandlers = () => {
   $('#update').on('click', onUpdateOrder)
   $('#delete').on('click', onCancelOrder)
   $('#get-orders').on('click', onGetHistory)
+  $('#cart-button').on('click', function () { $('#order-history').html('') })
+  $('#cart-button').on('click', function () { $('#history-message').html('') })
 
   // ---------------------- CUSTOM STRIPE INTEGRATION HANDLERS -------------------------
   $('#purchase').on('click', (event) => {
     event.preventDefault()
     handler.open({
       name: 'Nozama Toys',
-      amount: total
+      amount: total * 100
     })
   })
   window.addEventListener('popstate', () => {
