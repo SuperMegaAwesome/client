@@ -22,6 +22,7 @@ const signInSuccess = (data) => {
   $('.cart-btn').removeClass('hide')
   $('#login-button').html('Account')
   $('#logInLabel').html('Account')
+  $('#get-orders').removeClass('hide')
 }
 
 const signOutSuccess = () => {
@@ -39,6 +40,7 @@ const signOutSuccess = () => {
   $('.cart-btn').addClass('hide')
   $('#login-button').html('Log In')
   $('#logInLabel').html('Log In')
+  $('#get-orders').addClass('hide')
 }
 
 const changePasswordSuccess = function () {
@@ -77,6 +79,11 @@ const checkoutFailure = function () {
 }
 
 const updateOrderSuccess = function () {
+  store.cart = null
+  const resetVal = 0.00
+  document.getElementById('cart-total').value = resetVal.toFixed(2)
+  $('.cart-item').remove()
+  $('.cart-button').addClass('hide')
   $('#cart-message').text('Purchase successful!').css('color', 'green')
   $('#cart-total').trigger('reset')
   $('#checkout').addClass('hide')
