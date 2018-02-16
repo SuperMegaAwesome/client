@@ -6,6 +6,7 @@ $button-border: #4c8996;
   background: url('/assets/styles/img/toys_lightened.jpg');
   background-size: auto;
   background-position: center;
+  border-bottom: solid 2px $footer-text;
   height: 150px;
   width: 100%;
 }
@@ -16,13 +17,13 @@ h1 {
   color: #800000;
   padding-top: 10px;
   text-align: center;
-  text-shadow: 100px 100px #fff;
+  text-shadow: 10px 10px #fff;
   width: 100%;
   font-size: 100px;
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Comic Sans MS', serif;
   padding-bottom: 40px;
 }
 
@@ -33,6 +34,13 @@ footer {
   position: absolute;
 }
 
+.cart-modal {
+  height: auto;
+}
+
+.message-area {
+  height: 15px;
+}
 
 // .brand {
 //   background: url('../styles/img/toys.jpg');

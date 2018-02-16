@@ -3,14 +3,20 @@
 <!-- template to display cart -->
 {{#if cart._id}}
 <div class="carts-content" data-id="{{cart._id}}">
-    <h5><strong>Item Name:</strong> {{cart.pastOrder[0].name}}</h5>
-    <h5><strong>Item Price:</strong> {{cart.pastOrder[0].price}}</h5>
-    <h5><strong>Quantity:</strong> {{cart.pastOrder[0].quantity}}</h5>
-    <h5><strong>Order Total:</strong> {{cart.orderTotal}}</h5>
-    <br>
+  <div class="row">
+    <div class="col-md-12">
+  	 {{#cart.pastOrder}}
+      <h5><strong>Item Name:</strong> {{name}}</h5>
+      <h5><strong>Item Price:</strong> {{price}}</h5>
+      <h5><strong>Quantity:</strong> {{quantity}}</h5>
+  	{{/cart.pastOrder}}
+      <h5><strong>Order Total:</strong> ${{cart.orderTotalUSD}}</h5>
+      <br>
+    </div>
+  </div>
 </div>
 {{else}}
-  <h5><strong>No Records</strong></h5>
+  <h5><strong>No Records Available</strong></h5>
 {{/if}}
 
 {{/each}}

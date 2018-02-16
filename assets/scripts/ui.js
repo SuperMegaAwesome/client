@@ -1,18 +1,15 @@
 'use strict'
 
 const store = require('./store')
-// const historyTemplate = require('./templates/order-history.handlebars')
+const historyTemplate = require('./templates/order-history.handlebars')
 
 const signUpSuccess = function (data) {
   $('#sign-up-error').text('')
   $('form').trigger('reset')
-  console.log('sign up worked!')
-  // add message div to HTML
   $('#message').text('Successfully Signed Up!').css('color', 'green')
 }
 
 const signInSuccess = (data) => {
-  console.log('signed in!')
   store.user = data.user
   $('#sign-in-modal').modal('hide')
   $('form').trigger('reset')
@@ -23,11 +20,12 @@ const signInSuccess = (data) => {
   $('.after-out').hide()
   $('#message').text('You have successfully signed in!').css('color', 'green')
   $('.cart-btn').removeClass('hide')
+  $('#login-button').html('Account')
+  $('#logInLabel').html('Account')
 }
 
 const signOutSuccess = () => {
   store.user = null
-  console.log('Signed out')
   $('#content').hide()
   $('#welcome-page').show()
   $('#sign-in-modal').modal('hide')
@@ -39,55 +37,51 @@ const signOutSuccess = () => {
   $('#message').text('Successfully signed out!').css('color', 'green')
   $('.add-to-cart').text('')
   $('.cart-btn').addClass('hide')
+  $('#login-button').html('Log In')
+  $('#logInLabel').html('Log In')
 }
 
 const changePasswordSuccess = function () {
-  console.log('Password changed')
   $('form').trigger('reset')
   $('#sign-in-modal').modal('hide')
   $('#message').text('Successfully changed password!').css('color', 'green')
 }
 
-const signInFailure = function (error) {
-  console.error(error)
+const signInFailure = function () {
   $('#sign-in-error').text('Incorrect Email and/or Password').css('color', 'red')
   $('#message').html('')
 }
-const signUpFailure = function (error) {
-  console.error(error)
+const signUpFailure = function () {
   $('#sign-up-error').text('Error signing up').css('color', 'red')
   $('#message').html('')
 }
-const changePasswordFailure = function (error) {
-  console.error(error)
+const changePasswordFailure = function () {
   $('#password-error').text('Error changing password').css('color', 'red')
   $('form').trigger('reset')
   $('#message').html('')
 }
 
-const signOutFailure = function (error) {
-  console.error(error)
+const signOutFailure = function () {
   $('#message').text('Error signing out').css('color', 'red')
 }
 
 const checkoutSuccess = function (data) {
   store.cart = data.cart
-  console.log(data.cart)
-  console.log('checkout success')
   $('.cart-button').removeClass('hide')
   $('#checkout').hide()
+  $('#cart-message').text('Select "Update", "Cancel", or "Purchase" to proceed').css('color', 'green')
 }
 
-const checkoutFailure = function (error) {
-  console.error(error)
+const checkoutFailure = function () {
+  $('#cart-message').text('Error checking out').css('color', 'red')
 }
 
 const updateOrderSuccess = function () {
-  // put in user message indicating success
+  $('#cart-message').text('Order successfully updated!').css('color', 'green')
 }
 
-const updateOrderFailure = function (error) {
-  console.error(error)
+const updateOrderFailure = function () {
+  $('#cart-message').text('Error updating order').css('color', 'red')
 }
 
 const cancelOrderSuccess = function () {
@@ -100,16 +94,22 @@ const cancelOrderSuccess = function () {
   $('#checkout').show()
 }
 
-const cancelOrderFailure = function (error) {
-  console.error(error)
+const cancelOrderFailure = function () {
+  $('#cart-message').text('Error canceling order').css('color', 'red')
 }
 
 const getHistorySuccess = function (data) {
-  // const historyHTML = historyTemplate({ carts: data.carts })
-  // $('#order-history').html(historyHTML)
+  const historyHTML = historyTemplate({ carts: data.carts })
+  $('#order-history').html(historyHTML)
+  $('#history-message').text('Order history successfully retrieved!').css('color', 'green')
+  console.log(historyHTML)
   console.log(data)
   console.log(data.carts)
   console.log(data.carts[0].pastOrder[0])
+}
+
+const getHistoryFailure = function () {
+  $('#history-message').text('Error retrieving order history').css('color', 'red')
 }
 
 module.exports = {
@@ -127,5 +127,6 @@ module.exports = {
   updateOrderFailure,
   cancelOrderSuccess,
   cancelOrderFailure,
-  getHistorySuccess
+  getHistorySuccess,
+  getHistoryFailure
 }

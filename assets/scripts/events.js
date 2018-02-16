@@ -7,11 +7,11 @@ const ui = require('./ui')
 const store = require('./store')
 const config = require('./config')
 
-// --------Global Variables for the current cart and current cart total------------ 
+// --------Global Variables for the current cart and current cart total------------
 const cartArray = []
 let total = 0
 
-// -----------------------!!!!!STRIPE MAGIC BELOW!!!!!-------------------------------- 
+// -----------------------!!!!!STRIPE MAGIC BELOW!!!!!--------------------------------
 // StripeCheckout is imported via script tag in html. It's not an error
 const handler = StripeCheckout.configure({
   key: 'pk_test_UxDuOG7M2SZQLIDtrFMoZtRP',
@@ -46,18 +46,25 @@ const handler = StripeCheckout.configure({
 })
 // --------------------------- END OF STRIPE MAGIC -------------------------------
 
-// --------------------- Auth Events ------------------------ 
+// --------------------- Auth Events ------------------------
 const onSignUp = (event) => {
   event.preventDefault()
   const data = getFormFields(event.target)
-  api.signUp(data)
-    .then(ui.signUpSuccess)
-    .catch(ui.signUpFailure)
-    // want to automatically sign in
-    .then(() => api.signIn(data))
-    .then(ui.signInSuccess)
-    .catch(ui.signInFailure)
+  const password = $('.sign-up input[name="credentials[password]"]').val()
+  const passConfirm = $('.sign-up input[name="credentials[password_confirmation]"]').val()
+  if (password === passConfirm) {
+    api.signUp(data)
+      .then(ui.signUpSuccess)
+      .catch(ui.signUpFailure)
+      // want to automatically sign in
+      .then(() => api.signIn(data))
+      .then(ui.signInSuccess)
+      .catch(ui.signInFailure)
+  } else {
+    ui.signUpFailure()
+  }
   $('.after-out').trigger('reset')
+  $('input').prop('required', true)
 }
 
 const onSignIn = (event) => {
@@ -67,11 +74,13 @@ const onSignIn = (event) => {
     .then(ui.signInSuccess)
     .catch(ui.signInFailure)
   $('.after-out').trigger('reset')
+  $('input').prop('required', true)
 }
 
 const onSignOut = (event) => {
   event.preventDefault()
   api.signOut()
+    .then(ui.cancelOrderSuccess)
     .then(ui.signOutSuccess)
     .fail(ui.signOutFailure)
 }
@@ -83,6 +92,7 @@ const onChangePassword = (event) => {
     .then(ui.changePasswordSuccess)
     .fail(ui.changePasswordFailure)
   $('.after-in').trigger('reset')
+  $('input').prop('required', true)
 }
 // ---------------------------------- End of Auth Events ----------------------
 
@@ -132,16 +142,13 @@ const onUpdateItem = (event) => {
 }
 
 const onRemoveItem = (event) => {
-  console.log(event.target)
   const data = $(event.target)
-  console.log(data.parents('tr'))
   data.parents('tr').remove()
   const resetVal = 0.00
   document.getElementById('cart-total').value = resetVal.toFixed(2)
 }
 
 const onUpdateOrder = (event) => {
-  console.log(event.target)
   const qty = $('.cart-quant').val()
   cartArray[0].quantity = qty
   const price = cartArray[0].price.replace('$', '')
@@ -157,7 +164,6 @@ const onUpdateOrder = (event) => {
 }
 
 const onCancelOrder = function (event) {
-  console.log(event.target)
   api.cancelOrder()
     .then(ui.cancelOrderSuccess)
     .catch(ui.cancelOrderFailure)
@@ -165,9 +171,9 @@ const onCancelOrder = function (event) {
 
 const onGetHistory = function (event) {
   event.preventDefault()
-  console.log(event.target)
   api.getHistory()
     .then(ui.getHistorySuccess)
+    .catch(ui.getHistoryFailure)
 }
 // --------------------------------------------------------------------
 
@@ -185,13 +191,14 @@ const addHandlers = () => {
   $('#update').on('click', onUpdateOrder)
   $('#delete').on('click', onCancelOrder)
   $('#get-orders').on('click', onGetHistory)
-
+  $('#cart-button').on('click', function () { $('#order-history').html('') })
+  $('#cart-button').on('click', function () { $('#history-message').html('') })
   // ---------------------- CUSTOM STRIPE INTEGRATION HANDLERS -------------------------
   $('#purchase').on('click', (event) => {
     event.preventDefault()
     handler.open({
       name: 'Nozama Toys',
-      amount: total
+      amount: total * 100
     })
   })
   window.addEventListener('popstate', () => {

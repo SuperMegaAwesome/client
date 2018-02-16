@@ -12,7 +12,7 @@
       <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
       <script src="https://checkout.stripe.com/checkout.js"></script>
-      
+
     </head>
     <body class="container-fluid">
       <header>
@@ -25,9 +25,6 @@
             <!-- <li class="profile" style="display: none" data-toggle="modal" data-target="#profile">
               <a>Profile</a>
             </li> -->
-            <li id='all-button' class="search">
-              <a>All Products</a>
-            </li>
             <!-- may need to change this data-target match modal -->
             <li class="sign signout default-show" data-target="#log-in">
               <a id='login-button'>Log In</a>
@@ -150,7 +147,9 @@
       	        <h5 class="dollars">Total: </h5><p class="dollars">$</p><input type="number" id="cart-total" class="cart-total dollars" step=0.01 min=0 placeholder=0.00 readonly>
               </div>
             </div>
-            <br><br><br>
+            <br><br>
+            <p id="cart-message"></p>
+            <br>
 
             <button type="button" class="btn btn-default create-order" id="checkout">Checkout</button>
             <button type="button" class="btn btn-default cart-button hide update-order" id="update">Update Order</button>
@@ -174,12 +173,12 @@
 
               <form id="get-orders">
                 <fieldset>
-                  <legend>Get Order History</legend>
-                  <input type="submit" name="submit" value="Get Order History">
+                  <legend>Order History</legend>
+                  <input type="submit" name="submit" value="Order History">
                 </fieldset>
               </form>
 
-              <h4> Order History </h4>
+              <p id="history-message"></p>
               <h6 id="order-history"> </h6>
           </div>
           </div>
@@ -207,7 +206,7 @@
             </div>
           </div>
         </div>
-<!--
+
         <div class="span4 col-sm-3 product ">
           <div class="thumbnail">
             <img src="https://i.imgur.com/1zK3usw.png" title="source: imgur.com" alt="post image">
@@ -216,10 +215,7 @@
 
               <div class="row-fluid">
                 <div class="span6">
-                  <p class="product-price">$5.00</p>
-                </div>
-                <div class="span6">
-                  <a class="btn btn-success btn-block cart-btn">Add to cart</a>
+                  <p> Out of Stock </p>
                 </div>
               </div>
             </div>
@@ -234,10 +230,7 @@
 
               <div class="row-fluid">
                 <div class="span6">
-                  <p class="product-price">$7.50</p>
-                </div>
-                <div class="span6">
-                  <a class="btn btn-success btn-block cart-btn">Add to cart</a>
+                  <p> Backordered</p>
                 </div>
               </div>
             </div>
@@ -252,16 +245,13 @@
 
               <div class="row-fluid">
                 <div class="span6">
-                  <p class="product-price">$6.00</p>
-                </div>
-                <div class="span6">
-                  <a class="btn btn-success btn-block cart-btn">Add to cart</a>
+                  <p> Out of Stock </p>
                 </div>
               </div>
             </div>
           </div>
         </div>
-
+<!--
         <div class="span4 col-sm-3 product ">
           <div class="thumbnail">
             <img src="https://i.imgur.com/7DEaSAT.png" title="source: imgur.com" alt="post image">
