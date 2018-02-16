@@ -33,7 +33,7 @@ const handler = StripeCheckout.configure({
     ajaxTokenPost(token)
       .then(() => {
         // Uses cancelOrder UI function to clear the cart UI
-        ui.cancelOrderSuccess()
+        ui.updateOrderSuccess()
         // Success messaging here!
         console.log('Purchase success!')
       })
@@ -185,6 +185,10 @@ const addHandlers = () => {
   $('.sign-out').on('submit', onSignOut)
   $('.change-password').on('submit', onChangePassword)
   $('#login-button').on('click', function () { $('#sign-in-modal').modal('show') })
+  $('#login-button').on('click', function () { $('#sign-in-error').text('') })
+  $('#login-button').on('click', function () { $('#sign-up-error').text('') })
+  $('#login-button').on('click', function () { $('#sign-out-error').text('') })
+  $('#login-button').on('click', function () { $('#password-error').text('') })
   $('.cart-btn').on('click', addToCart)
   $('#checkout').on('click', onCheckout)
   $('body').on('click', '.update-item-btn', onUpdateItem)
@@ -196,7 +200,10 @@ const addHandlers = () => {
   $('#cart-button').on('click', function () { $('#history-message').html('') })
   $('#cart-button').on('click', function () { $('#cart-message').html('') })
   $('#cart').on('hidden.bs.modal', function () { if (store.cart) { onCancelOrder() } })
+  $('#cart').on('hidden.bs.modal', function () { if (store.user) { $('.cart-btn').removeClass('hide') } })
+  $('#cart').on('hidden.bs.modal', function () { if (store.user) { $('.add-to-cart').text('') } })
   $('.cart-btn').on('click', function () { $('#checkout').removeClass('hide') })
+  $('body').on('click', function () { $('#message').html('') })
   // ---------------------- CUSTOM STRIPE INTEGRATION HANDLERS -------------------------
   $('#purchase').on('click', (event) => {
     event.preventDefault()
