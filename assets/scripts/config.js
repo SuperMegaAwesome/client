@@ -2,8 +2,8 @@
 
 const config = {
   apiOrigins: {
-    production: 'https://powerful-cove-92841.herokuapp.com/',
-    development: 'https://powerful-cove-92841.herokuapp.com/'
+    production: 'https://powerful-cove-92841.herokuapp.com',
+    development: 'http://localhost:4741'
   }
 }
 
