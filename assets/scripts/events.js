@@ -29,7 +29,10 @@ const handler = StripeCheckout.configure({
       })
     }
 
-    ajaxTokenPost(token)
+    onUpdateOrder()
+      .then(() => { 
+        ajaxTokenPost(token)
+      })
       .then(() => {
         // Uses cancelOrder UI function to clear the cart UI
         ui.updateOrderSuccess()
@@ -127,7 +130,7 @@ const onCheckout = () => {
   $('.delete-btn').hide()
   const data = {
     cart: {
-      pastOrder: [],
+      pastOrder: [''],
       orderTotal: 0
     }
   }
@@ -158,7 +161,7 @@ const onRemoveItem = (event) => {
   $('#cart-message').text('Order removed').css('color', 'green')
 }
 
-const onUpdateOrder = (event) => {
+const onUpdateOrder = () => {
   const qty = $('.cart-quant').val()
   cartArray[0].quantity = qty
   const price = cartArray[0].price.replace('$', '')
