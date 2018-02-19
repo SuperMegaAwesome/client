@@ -69,6 +69,8 @@ const signOutFailure = function () {
 
 const checkoutSuccess = function (data) {
   store.cart = data.cart
+  $('.update-item-btn').hide()
+  $('.delete-btn').hide()
   $('.cart-button').removeClass('hide')
   $('#checkout').addClass('hide')
   $('#cart-message').text('Select "Cancel" or "Purchase" to proceed').css('color', 'green')
