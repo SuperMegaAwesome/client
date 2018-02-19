@@ -93,6 +93,12 @@ const onChangePassword = (event) => {
 // ---------------------------------- End of Auth Events ----------------------
 
 // --------------------------------- Cart Events ---------------------------------
+const onShowModalActions = function (event) {
+  $('#order-history').html('')
+  $('#history-message').html('')
+  $('#cart-message').html('')
+}
+
 const addToCart = function (event) {
   const name = $(event.target).parents('.product').find('.prod-name').text()
   const price = $(event.target).parents('.product').find('.product-price').text()
@@ -116,6 +122,9 @@ const addToCart = function (event) {
 }
 
 const onCheckout = () => {
+  // Hide update and delete buttons when cart is ready for purchase
+  $('.update-item-btn').hide()
+  $('.delete-btn').hide()
   const data = {
     cart: {
       pastOrder: [],
@@ -138,11 +147,15 @@ const onUpdateItem = (event) => {
 }
 
 const onRemoveItem = (event) => {
+  // Reveal the Cart button and empty label text so that the item can be added to the cart again after it is removed.
   const data = $(event.target)
   data.parents('tr').remove()
   const resetVal = 0.00
   document.getElementById('cart-total').value = resetVal.toFixed(2)
   $('#checkout').addClass('hide')
+  $('.cart-btn').removeClass('hide')
+  $('.add-to-cart').text('')
+  $('#cart-message').text('Order removed').css('color', 'green')
 }
 
 const onUpdateOrder = (event) => {
@@ -161,9 +174,22 @@ const onUpdateOrder = (event) => {
 }
 
 const onCancelOrder = function (event) {
+  // Show update and delete buttons upon order cancel event so that modifications can be made to the cart
+  $('.update-item-btn').show()
+  $('.delete-btn').show()
   api.cancelOrder()
     .then(ui.cancelOrderSuccess)
     .catch(ui.cancelOrderFailure)
+}
+
+const onHiddenModalActions = function (event) {
+  // if the modal is hidden when a cart is present, cancel the entire order so that the item can be added again to the cart.
+  if (store.cart) {
+    $('.cart-btn').removeClass('hide')
+    $('.add-to-cart').text('')
+    $('#checkout').addClass('hide')
+    onCancelOrder()
+  }
 }
 
 const onGetHistory = function (event) {
@@ -192,13 +218,12 @@ const addHandlers = () => {
   $('#purchase').on('click', onUpdateOrder)
   $('#delete').on('click', onCancelOrder)
   $('#get-orders').on('click', onGetHistory)
-  $('#cart-button').on('click', function () { $('#order-history').html('') })
-  $('#cart-button').on('click', function () { $('#history-message').html('') })
-  $('#cart-button').on('click', function () { $('#cart-message').html('') })
-  $('#cart').on('hidden.bs.modal', function () { if (store.cart) { onCancelOrder() } })
-  $('#cart').on('hidden.bs.modal', function () { if (store.user) { $('.cart-btn').removeClass('hide') } })
-  $('#cart').on('hidden.bs.modal', function () { if (store.user) { $('.add-to-cart').text('') } })
-  $('.cart-btn').on('click', function () { $('#checkout').removeClass('hide') })
+  $('#cart-button').on('click', onShowModalActions)
+  $('#cart').on('hidden.bs.modal', onHiddenModalActions)
+  // $('#cart-button').on('click', function () { $('.cart-btn').addClass('hide') })
+  // $('#cart').on('hidden.bs.modal', function () { if (store.user) { $('.cart-btn').removeClass('hide') } })
+  // $('#cart').on('hidden.bs.modal', function () { if (store.user) { $('.add-to-cart').text('') } })
+  // $('.cart-btn').on('click', function () { $('#checkout').removeClass('hide') })
   $('body').on('click', function () { $('#message').html('') })
   // ---------------------- CUSTOM STRIPE INTEGRATION HANDLERS -------------------------
   $('#purchase').on('click', (event) => {
