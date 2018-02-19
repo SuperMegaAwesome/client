@@ -14,7 +14,7 @@ const signInSuccess = (data) => {
   $('#sign-in-modal').modal('hide')
   $('form').trigger('reset')
   // $('#order-history').html('')
-  $('#checkout-button').show()
+  // $('#checkout-button').show()
   $('.sign-in-warn').hide()
   $('.after-in').show()
   $('.after-out').hide()
@@ -31,7 +31,7 @@ const signOutSuccess = () => {
   $('#welcome-page').show()
   $('#sign-in-modal').modal('hide')
   // $('.profile').hide()
-  $('#checkout-button').hide()
+  $('#checkout').addClass('hide')
   $('.sign-in-warn').show()
   $('.after-in').hide()
   $('.after-out').show()
@@ -69,6 +69,8 @@ const signOutFailure = function () {
 
 const checkoutSuccess = function (data) {
   store.cart = data.cart
+  $('.update-item-btn').hide()
+  $('.delete-btn').hide()
   $('.cart-button').removeClass('hide')
   $('#checkout').addClass('hide')
   $('#cart-message').text('Select "Cancel" or "Purchase" to proceed').css('color', 'green')
