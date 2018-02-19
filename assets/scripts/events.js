@@ -19,10 +19,9 @@ const handler = StripeCheckout.configure({
   locale: 'auto',
   // token is a callback that runs what ever functionality we need once Stripe has confirmed the credit card is valid, which Stripe sends back as a token object that represents the credit card. It takes a single arg, the credit card token object. 
   token: function (token) {
-
     // this function below creates the credit card charge. It sends the entire CC token to our backend.
     const ajaxTokenPost = function (theToken) {
-      console.log(theToken)
+      // console.log(theToken)
       return $.ajax({
         url: config.apiOrigin + '/charge',
         method: 'POST',
