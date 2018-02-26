@@ -9,7 +9,7 @@ const config = require('./config')
 
 // --------Global Variables for the current cart and current cart total------------
 const cartArray = []
-let total = 0
+let stripeTotal = 0
 
 // -----------------------!!!!!STRIPE MAGIC BELOW!!!!!--------------------------------
 // StripeCheckout is imported via script tag in html. It's not an error
@@ -131,6 +131,7 @@ const addToCart = function (event) {
   cartArray[0] = product
 
   const itemPrice = price.replace('$', '')
+  stripeTotal = itemPrice
   document.getElementById('cart-total').value = itemPrice
 
   $('.fill-this').append(tableVal)
@@ -157,9 +158,9 @@ const onUpdateItem = (event) => {
   const qty = $('.cart-quant').val()
   cartArray[0].quantity = qty
   const price = cartArray[0].price.replace('$', '')
-  total = (price * qty).toFixed(2)
+  stripeTotal = price * qty
 
-  document.getElementById('cart-total').value = total
+  document.getElementById('cart-total').value = stripeTotal.toFixed(2)
 }
 
 const onRemoveItem = (event) => {
@@ -167,6 +168,7 @@ const onRemoveItem = (event) => {
   const data = $(event.target)
   data.parents('tr').remove()
   const resetVal = 0.00
+  stripeTotal = resetVal
   document.getElementById('cart-total').value = resetVal.toFixed(2)
   $('#checkout').addClass('hide')
   $('.cart-btn').removeClass('hide')
@@ -178,6 +180,7 @@ const onCancelOrder = function (event) {
   // Show update and delete buttons upon order cancel event so that modifications can be made to the cart
   $('.update-item-btn').show()
   $('.delete-btn').show()
+  stripeTotal = 0
   api.cancelOrder()
     .then(ui.cancelOrderSuccess)
     .catch(ui.cancelOrderFailure)
@@ -230,7 +233,7 @@ const addHandlers = () => {
     event.preventDefault()
     handler.open({
       name: 'Nozama Toys',
-      amount: total * 100
+      amount: stripeTotal * 100
     })
   })
   window.addEventListener('popstate', () => {
