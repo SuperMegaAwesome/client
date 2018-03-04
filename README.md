@@ -10,18 +10,24 @@ While logged in the user can view all products, add items to their cart, update 
 
 This instance of Stripe Checkout is in 'Test' Mode, and the credit card information that must be used is as follows:
 
-Credit Card No.: 4242 4242 4242 4242
-Expiration Date: Any future date (MM/YY)
-CVV: Any three digit number
+**Credit Card No.:** 4242 4242 4242 4242
+
+**Expiration Date:** Any future date (MM/YY)
+
+**CVV:** Any three digit number
 
 ## Planning
 
 At the beginning of this project, we decided to fully plan out exactly where we wanted this online store to go in terms of development.
 We created multiple versions of a finished product, ultimately ending up with a working site where a user is able to purchase an item from the store.
-In terms of development, we - as a team - divided up what tasks needed to be accomplished and the order in which they should be completed, and then began. We started by simultaneously developing the back end with Express and MongoDB, as well as the front end HTML and authorization JavaScript.
+In terms of development, we - as a team - divided up what tasks needed to be accomplished and the order in which they should be completed, and then began.
+
+We started by simultaneously developing the back end with Express and MongoDB, as well as the front end HTML and authorization JavaScript.
 From there, we wrote the code for all of our purchasing events, from adding an item to the cart, up to making the final purchase. This involved AJAX requests to our API - being built out at this same time - as well as developing UI messages and actions in the event’s success or failure.
+
 All of our CRUD actions were built using the order (cart of items to be purchased) as a base, and were all created in JavaScript events.
 As we encountered bugs in the overall user experience - such as being able to see another user’s cart - we fixed them by pair programming and debugging as a team. The majority of issues were solved this way, making use of our teammate’s different perspectives and thought processes.
+
 After the functionality of the application was in order, we finished the styling using SCSS and Bootstrap methods.
 
 Technologies used: HTML, SCSS, JavaScript, jQuery, Express, MongoDB, Mongo, Stripe, Bootstrap
