@@ -6,6 +6,14 @@ Back-End GitHub Repository: https://github.com/SuperMegaAwesome/api
 This app is designed for users to buy toys from an online store, Nozama.com
 While logged in the user can view all products, add items to their cart, update item quantity, cancel their order, and purchase items in their cart using the Stripe payment system with a credit card.
 
+### Note:
+
+This instance of Stripe Checkout is in 'Test' Mode, and the credit card information that must be used is as follows:
+
+Credit Card No.: 4242 4242 4242 4242
+Expiration Date: Any future date (MM/YY)
+CVV: Any three digit number
+
 ## Planning
 
 At the beginning of this project, we decided to fully plan out exactly where we wanted this online store to go in terms of development.
